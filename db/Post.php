@@ -1,10 +1,12 @@
 <?php
 
+require 'db.php';
+
 abstract class Post
 {
     public static function addPost(string $title, string $content, string $signature, ?string $header_image = null)
     {
-        $sql = 'INSERT INTO Post (title, content, header_image, signature)
+        $sql = 'INSERT INTO PostTable (title, content, header_image, signature)
                 VALUES (:title, :content, :header_image, :signature)';
         $values = [
             ':title' => $title,
@@ -16,9 +18,16 @@ abstract class Post
         Db::query($sql, $values);
     }
 
+    public static function selectAllPosts()
+    {
+        $sql = 'SELECT title, content, header_image, signature FROM PostTable';
+
+        return Db::select($sql);
+    }
+
     public static function getPostByUserId(int $user_id)
     {
-        $sql = 'SELECT * FROM Post WHERE post_id = :post_id';
+        $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id';
         $value = [':user_id' => $user_id];
 
         return Db::selectOne($sql, $value);
@@ -26,7 +35,7 @@ abstract class Post
 
     public static function getPostByPostId(int $post_id)
     {
-        $sql = 'SELECT * FROM Post WHERE post_id = :post_id';
+        $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id';
         $value = [':post_id' => $post_id];
 
         return Db::selectOne($sql, $value);

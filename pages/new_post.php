@@ -57,7 +57,7 @@
                     src=""
                     id="img-preview"
                     class="w-100 h-100"
-                    style="aspect-ratio: 4/1; object-fit: cover; object-position: center;"
+                    style="aspect-ratio: 4/2; object-fit: cover; object-position: center;"
                     aria-label="Image Preview"
                 />
                 <div class="card-img-overlay m-2">

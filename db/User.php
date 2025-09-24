@@ -6,7 +6,7 @@ abstract class User
 {
     public static function getUser(string $username)
     {
-        $sql = 'SELECT * FROM User WHERE username = :username';
+        $sql = 'SELECT * FROM UserTable WHERE username = :username';
         $value = [':username' => $username];
 
         return Db::selectOne($sql, $value);

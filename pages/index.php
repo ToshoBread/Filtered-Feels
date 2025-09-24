@@ -1,28 +1,13 @@
 <?php
+
+require_once '../db/Post.php';
+require_once '../services/helper.php';
+
 $contentMaxLength = 200;
 $contentMaxLengthWithImage = 120;
 
-$images = [
-    'https://placehold.co/300x100',
-    null,
-];
+$posts = Post::selectAllPosts();
 
-$titles = [
-    'Great Day',
-    'Testing',
-];
-
-$signs = [
-    'Unknown',
-    'Z',
-];
-
-$content = [
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo esse
-    sint non nisi tenetur similique laborum quo nam dignissimos
-    perspiciatis.',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget egestas tortor, accumsan mollis leo. Donec quam risus, gravida et arcu ac, accumsan pharetra dui. Nam eget quam vel mi euismod placerat. Suspendisse non augue quis massa congue auctor eget quis erat. Suspendisse placerat in felis eu tristique. Quisque scelerisque.',
-]
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,37 +30,40 @@ $content = [
         </div>
 
         <!--Card-->
+        <!--TODO: Fix Card Wrap Layout-->
         <div
-            class="container-fluid d-flex justify-content-center flex-wrap gap-5 my-3"
+            class="container-fluid d-flex justify-content-center flex-wrap gap-5"
         >
-            <?php for ($i = count($titles) - 1; $i >= 0; $i--) {?>
+            <?php for ($i = count($posts) - 1; $i >= 0; $i--) {
+                $current = $posts[$i];
+                ?>
 
             <div class="card shadow border-secondary" style="width: 18rem; height: 20rem;">
 
-                <?php if ($images[$i]) {?>
+                <?php if ($current['header_image']) {?>
 
                 <img
-                    src="<?= $images[$i]?>"
+                    src="<?= getImage($current['header_image'])?>"
                     class="card-img-top"
-                    style="min-height: 30%; max-height: 30%; object-fit:cover;"
+                    style="aspect-ratio: 4/2;  object-fit: cover; object-position: center;"
                 />
 
                 <?php }?>
 
                 <div class="card-body">
-                    <h3 class="card-title"><?= $titles[$i]?></h3>
-                    <p class="card-text ">
-                        <?php if (mb_strlen($content[$i]) > $contentMaxLengthWithImage && $images[$i]) {
-                            echo substr($content[$i], 0, $contentMaxLengthWithImage).'...';
-                        } elseif (mb_strlen($content[$i]) > $contentMaxLength) {
-                            echo substr($content[$i], 0, $contentMaxLength).'...';
+                    <h3 class="card-title"><?= $current['title']?></h3>
+                    <p class="card-text">
+                        <?php if (mb_strlen($current['content']) > $contentMaxLengthWithImage && $images[$i]) {
+                            echo substr($current['content'], 0, $contentMaxLengthWithImage).'...';
+                        } elseif (mb_strlen($current['content']) > $contentMaxLength) {
+                            echo substr($current['content'], 0, $contentMaxLength).'...';
                         } else {
-                            echo $content[$i];
+                            echo $current['content'];
                         }?>
                     </p>
                 </div>
                 <div class="text-end">
-                    <div class="card-footer blockquote-footer"><?= $signs[$i]?></div>
+                    <div class="card-footer blockquote-footer"><?= $current['signature']?></div>
                 </div>
             </div>
 

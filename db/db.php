@@ -38,7 +38,7 @@ abstract class Db
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            throw new Exception('Database connection failed: '.$e->getMessage());
+            error_log(date('H:i:s m-d-Y').'Database Connection Failed: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
         }
 
         return $pdo;
@@ -55,7 +55,7 @@ abstract class Db
             $pdo = null;
             echo 'Query has been successfully executed.';
         } catch (PDOException $e) {
-            throw new Exception('Database query failed: '.$e->getMessage());
+            error_log(date('H:i:s m-d-Y').'Database Query Failed: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
         }
     }
 
@@ -73,7 +73,7 @@ abstract class Db
 
             return $data;
         } catch (PDOException $e) {
-            throw new Exception('Database select execution failed: '.$e->getMessage());
+            error_log(date('H:i:s m-d-Y').'Database Select Execution Failed: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
         }
 
     }
@@ -91,7 +91,7 @@ abstract class Db
 
             return $data;
         } catch (PDOException $e) {
-            throw new Exception('Database select one execution failed: '.$e->getMessage());
+            error_log(date('H:i:s m-d-Y').'Database Select One Execution Failed: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
         }
     }
 }
