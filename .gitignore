@@ -1,3 +1,4 @@
 .env
 vendor/
+log.txt
 .nvim.lua
