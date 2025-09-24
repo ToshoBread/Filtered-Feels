@@ -41,7 +41,7 @@ $content = [
         <?php require '../components/navbar.html'?>
 
         <div class="d-flex justify-content-center my-4">
-            <a href="new_note.php" class="btn btn-primary">Voice your filtered feels</a>
+            <a href="new_post.php" class="btn btn-primary">Voice your filtered feels</a>
         </div>
 
         <!--Card-->
@@ -73,7 +73,9 @@ $content = [
                             echo $content[$i];
                         }?>
                     </p>
-                    <div class="blockquote-footer my-1" style="justify-self: end;"><?= $signs[$i]?></div>
+                </div>
+                <div class="text-end">
+                    <div class="card-footer blockquote-footer"><?= $signs[$i]?></div>
                 </div>
             </div>
 

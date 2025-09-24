@@ -1,24 +1,51 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="container">
+<style>
+  a {
+    cursor: pointer;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md navbar-dark text-bg-dark sticky-top">
+  <div class="container-fluid">
     <img src="https://placehold.co/50" class="navbar-brand" />
     <button
       class="navbar-toggler"
-      data-bs-toggle="collapse"
+      data-bs-toggle="offcanvas"
       data-bs-target="#nav"
       aria-controls="nav"
-      aria-label="Expand Navigation "
+      aria-label="Expand Off Canvas Navigation"
+      aria-expanded="false"
     >
-      <div class="navbar-toggler-icon"></div>
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <button class="nav-link">Login</button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link">About</button>
-        </li>
-      </ul>
+
+    <div class="offcanvas offcanvas-end text-bg-dark" id="nav">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Filtered Feels</h5>
+        <button
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close Nav"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" class="nav-link">Write New Post</a>
+          </li>
+        </ul>
+        <hr />
+        <ul class="navbar-nav ms-auto gap-3">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Login</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
