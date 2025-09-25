@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+require_once '../components/component.php';
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -12,7 +17,7 @@
         />
     </head>
     <body class="bg-secondary-subtle" style="height: 100vh">
-        <?php require '../components/navbar.html'?>
+        <?= Navbar()?>
         <div
             class="container-fluid row align-items-center justify-content-center h-75"
         >
@@ -21,7 +26,7 @@
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="login-form"
-                class="col col-auto p-4 border border-secondary rounded-1"
+                class="col col-auto p-4 border border-secondary rounded-1 shadow"
             >
                 <div class="form-floating my-3">
                     <input
@@ -69,7 +74,7 @@
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="register-form"
-                class="col col-auto p-4 border border-secondary rounded-1 d-none"
+                class="col col-auto p-4 border border-secondary rounded-1 d-none shadow"
             >
                 <div class="form-floating my-3">
                     <input

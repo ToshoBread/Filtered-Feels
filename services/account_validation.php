@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once '../db/User.php';
 include_once 'helper.php';
 
@@ -55,5 +57,5 @@ try {
 $_SESSION['username'] = $username;
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['role'] = $user['role'];
-header('Location: ../pages/account.php');
+header('Location: ../pages/index.php');
 exit();

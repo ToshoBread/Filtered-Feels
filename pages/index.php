@@ -3,6 +3,7 @@ session_start();
 
 require_once '../db/Post.php';
 require_once '../services/helper.php';
+require_once '../components/component.php';
 
 $contentMaxLength = 315;
 $contentMaxLenWithImg = 120;
@@ -24,7 +25,7 @@ $posts = Post::selectAllPosts();
         />
     </head>
     <body class="bg-secondary-subtle" style="height: 100vh;">
-        <?php require '../components/navbar.html'?>
+        <?= Navbar()?>
 
         <div class="d-flex justify-content-center my-4">
             <a href="new_post.php" class="btn btn-primary">Voice your feels</a>

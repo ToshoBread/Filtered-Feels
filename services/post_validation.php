@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once '../db/Post.php';
 include_once 'helper.php';
 
