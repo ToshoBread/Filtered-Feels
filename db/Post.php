@@ -18,22 +18,37 @@ abstract class Post
         Db::query($sql, $values);
     }
 
+    public static function addPostWithUserId(string $title, string $content, string $signature, int $user_id, ?string $header_image = null)
+    {
+        $sql = 'INSERT INTO PostTable (title, content, header_image, signature, user_id)
+                VALUES (:title, :content, :header_image, :signature, :user_id)';
+        $values = [
+            ':title' => $title,
+            ':content' => $content,
+            ':header_image' => $header_image,
+            ':signature' => $signature,
+            ':user_id' => $user_id,
+        ];
+
+        Db::query($sql, $values);
+    }
+
     public static function selectAllPosts()
     {
-        $sql = 'SELECT title, content, header_image, signature FROM PostTable';
+        $sql = 'SELECT post_id, title, content, header_image, signature FROM PostTable';
 
         return Db::select($sql);
     }
 
-    public static function getPostByUserId(int $user_id)
+    public static function selectPostByUserId(int $user_id)
     {
-        $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id';
+        $sql = 'SELECT * FROM PostTable WHERE user_id = :user_id';
         $value = [':user_id' => $user_id];
 
-        return Db::selectOne($sql, $value);
+        return Db::select($sql, $value);
     }
 
-    public static function getPostByPostId(int $post_id)
+    public static function selectPostByPostId(int $post_id)
     {
         $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id';
         $value = [':post_id' => $post_id];

@@ -19,8 +19,8 @@ try {
     exit();
 }
 
-$username = htmlspecialchars($_POST['login-username']);
-$password = htmlspecialchars($_POST['login-password']);
+$username = htmlspecialchars(trim($_POST['login-username']));
+$password = htmlspecialchars(trim($_POST['login-password']));
 
 try {
     if (empty($username)) {
@@ -57,5 +57,6 @@ try {
 $_SESSION['username'] = $username;
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['role'] = $user['role'];
+$_SESSION['created_on'] = $user['created_on'];
 header('Location: ../pages/index.php');
 exit();

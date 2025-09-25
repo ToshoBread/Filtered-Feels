@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-require_once '../components/component.php';
+require_once '../components/navbar.php';
+
+if (! empty($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,7 +45,7 @@ require_once '../components/component.php';
                     id="signature"
                     name="signature"
                     placeholder="Someone"
-                    value="Someone"
+                    value=<?= isset($username) ? $username : 'Someone'?>
                     aria-required="false"
                     aria-label="Input Signature"
                 />

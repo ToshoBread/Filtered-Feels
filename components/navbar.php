@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-dark text-bg-dark sticky-top">
+<?php
+function Navbar()
+{?>
+
+<nav class="navbar navbar-expand-md navbar-dark text-bg-dark sticky-top shadow">
     <div class="container-fluid">
         <img src="https://placehold.co/50" class="navbar-brand" />
         <button
@@ -58,7 +62,8 @@
     </div>
 </nav>
 <script src="../scripts/navbar.js"></script>
-<?php if (isset($_POST['logout'])) {
+<?php }
+if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: ../pages/index.php');
     exit();

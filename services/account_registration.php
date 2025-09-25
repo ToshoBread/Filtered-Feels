@@ -17,9 +17,9 @@ try {
     exit();
 }
 
-$username = htmlspecialchars($_POST['reg-username']);
-$password = htmlspecialchars($_POST['reg-password']);
-$confirmPass = htmlspecialchars($_POST['confirm-pass']);
+$username = htmlspecialchars(trim($_POST['reg-username']));
+$password = htmlspecialchars(trim($_POST['reg-password']));
+$confirmPass = htmlspecialchars(trim($_POST['confirm-pass']));
 
 try {
     if (empty($username)) {
@@ -49,6 +49,18 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Password Error', $e->getMessage());
+    header('Location: ../pages/account.php');
+    exit();
+}
+
+$fetchedUser = User::getUser($username);
+
+try {
+    if (! empty($fetchedUser)) {
+        throw new Exception('Username is taken');
+    }
+} catch (Exception $e) {
+    addToErrLog('Account Creation Error', $e->getMessage());
     header('Location: ../pages/account.php');
     exit();
 }

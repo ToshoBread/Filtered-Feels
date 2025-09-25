@@ -19,9 +19,9 @@ try {
     exit();
 }
 
-$title = htmlspecialchars($_POST['title']);
-$signature = htmlspecialchars($_POST['signature'] ?? 'Someone');
-$postContent = htmlspecialchars($_POST['post-content']);
+$title = htmlspecialchars(trim($_POST['title']));
+$signature = htmlspecialchars(trim($_POST['signature'] ?? 'Someone'));
+$postContent = htmlspecialchars(trim($_POST['post-content']));
 
 try {
     if (empty($title)) {
@@ -41,8 +41,10 @@ try {
     exit();
 }
 
+$userId = $_SESSION['user_id'];
+
 try {
-    if (isset($_FILES['header-img']['name'])) {
+    if (! empty($_FILES['header-img']['name'])) {
         $file = $_FILES['header-img'];
 
         if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -82,7 +84,12 @@ try {
             throw new Exception('Failed to upload Image.');
         }
 
-        Post::addPost($title, $postContent, $signature, $fileName);
+        if (isset($userId)) {
+            Post::addPostWithUserId($title, $postContent, $signature, $userId, $fileName);
+        } else {
+            Post::addPost($title, $postContent, $signature, $fileName);
+        }
+
         header('Location: ../pages/index.php');
         exit();
 
@@ -93,6 +100,11 @@ try {
     exit();
 }
 
-Post::addPost($title, $postContent, $signature);
+if (isset($userId)) {
+    Post::addPostWithUserId($title, $postContent, $signature, $userId);
+} else {
+    Post::addPost($title, $postContent, $signature);
+}
+
 header('Location: ../pages/index.php');
 exit();
