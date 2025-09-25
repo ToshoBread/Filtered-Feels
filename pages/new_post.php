@@ -82,7 +82,7 @@
             <input type="reset" value="Reset" id="discard-btn" class="btn btn-danger mt-2 px-5" aria-label="Reset">
             <input type="submit" value="Post" id="submit-btn" name="submit" class="btn btn-success mt-2 px-5 float-end" aria-label="Submit" />
         </form>
-        <script src="../scripts/new_post.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+        <script src="../scripts/new_post.js"></script>
     </body>
 </html>

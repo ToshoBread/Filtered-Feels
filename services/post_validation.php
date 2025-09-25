@@ -1,6 +1,7 @@
 <?php
 
 include_once '../db/Post.php';
+include_once 'helper.php';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -11,7 +12,7 @@ try {
         throw new Exception('Form Submission Error');
     }
 } catch (Exception $e) {
-    error_log(date('H:i:s m-d-Y').'Form Error: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
+    addToErrLog('Form Error', $e->getMessage());
     header('Location: ../pages/new_post.php');
     exit();
 }
@@ -21,25 +22,25 @@ $signature = htmlspecialchars($_POST['signature'] ?? 'Someone');
 $postContent = htmlspecialchars($_POST['post-content']);
 
 try {
-    if (! $title) {
+    if (empty($title)) {
         throw new Exception('Post Title is missing.');
     }
 
-    if (! $signature) {
+    if (empty($signature)) {
         throw new Exception('Post Signature is missing.');
     }
 
-    if (! $postContent) {
+    if (empty($postContent)) {
         throw new Exception('Post Content is missing.');
     }
 } catch (Exception $e) {
-    error_log(date('H:i:s m-d-Y').'Post Content Upload Error: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
+    addToErrLog('Post Content Upload Error', $e->getMessage());
     header('Location: ../pages/new_post.php');
     exit();
 }
 
 try {
-    if (! empty($_FILES['header-img']['name'])) {
+    if (isset($_FILES['header-img']['name'])) {
         $file = $_FILES['header-img'];
 
         if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -85,7 +86,7 @@ try {
 
     }
 } catch (Exception $e) {
-    error_log(date('H:i:s m-d-Y').'File Upload Error: '.$e->getMessage()."\n", 3, __DIR__.'/../log.txt');
+    addToErrLog('File Upload Error', $e->getMessage());
     header('Location: ../pages/new_post.php');
     exit();
 }
