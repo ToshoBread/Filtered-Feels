@@ -2,7 +2,7 @@
 session_start();
 
 require_once '../db/Post.php';
-require_once '../services/helper.php';
+require_once '../services/util.php';
 require_once '../components/navbar.php';
 require_once '../components/card.php';
 
@@ -41,7 +41,8 @@ $posts = Post::selectAllPosts();
                     $current['title'],
                     $current['content'],
                     $current['signature'],
-                    $current['header_image'],
+                    $current['user_id'],
+                    $current['header_image']
                 ))->render();
             }?>
         </div>
@@ -49,6 +50,6 @@ $posts = Post::selectAllPosts();
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-        <script src="../scripts/posts.js"></script>
+        <script src="../scripts/post.js"></script>
     </body>
 </html>

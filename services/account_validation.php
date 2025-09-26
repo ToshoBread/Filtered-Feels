@@ -37,7 +37,7 @@ try {
     exit();
 }
 
-$user = User::getUser($username);
+$user = User::selectUser($username);
 
 try {
     if (empty($user)) {

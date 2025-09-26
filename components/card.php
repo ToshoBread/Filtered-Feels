@@ -8,6 +8,8 @@ class Card
 
     private int $postId;
 
+    private ?int $userId;
+
     private string $title;
 
     private string $content;
@@ -16,23 +18,33 @@ class Card
 
     private ?string $headerImage;
 
-    public function __construct(int $postId, string $title, string $content, string $signature, ?string $headerImage = null)
+    public function __construct(int $postId, string $title, string $content, string $signature, ?int $userId = null, ?string $headerImage = null)
     {
         $this->postId = $postId;
         $this->title = $title;
         $this->content = $content;
         $this->signature = $signature;
+        $this->userId = $userId;
         $this->headerImage = $headerImage;
-    }
-
-    public function getId()
-    {
-        return $this->postId;
     }
 
     public function render()
     {?>
-        <div class="card shadow border-secondary" style="width: 18rem; height: 24rem;">
+        <style>
+        .card {
+            width: 18rem;
+            height: 24rem;
+            transition-property: scale, translate, box-shadow;
+            transition-duration: 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                scale: 1.03;
+                translate: 0px -0.5rem;
+            }
+        }
+        </style>
+        <div class="post card border-secondary shadow" data-post-id="<?= $this->postId ?>" data-user-id="<?= $this->userId ?? 0 ?>">
 
             <?php if ($this->headerImage) {?>
 

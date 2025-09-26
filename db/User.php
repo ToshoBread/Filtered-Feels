@@ -13,10 +13,18 @@ abstract class User
         Db::query($sql, $values);
     }
 
-    public static function getUser(string $username)
+    public static function selectUser(string $username)
     {
-        $sql = 'SELECT * FROM UserTable WHERE username = :username';
+        $sql = 'SELECT user_id, username, hashed_password, role, created_on FROM UserTable WHERE username = :username';
         $value = [':username' => $username];
+
+        return Db::selectOne($sql, $value);
+    }
+
+    public static function selectUserById(string $user_id)
+    {
+        $sql = 'SELECT user_id, username, role, created_on FROM UserTable WHERE user_id = :user_id';
+        $value = [':user_id' => $user_id];
 
         return Db::selectOne($sql, $value);
     }

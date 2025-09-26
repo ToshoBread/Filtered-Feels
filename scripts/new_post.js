@@ -1,8 +1,8 @@
-const imgInput = document.getElementById("input-header-img");
-const imgPreview = document.getElementById("img-preview");
-const noteContent = document.getElementById("note-content");
+const imgInput = document.querySelector("#input-header-img");
+const imgPreview = document.querySelector("#img-preview");
+const noteContent = document.querySelector("#note-content");
 
-const removeImgBtn = document.getElementById("remove-img-btn");
+const removeImgBtn = document.querySelector("#remove-img-btn");
 removeImgBtn.style.display = "none";
 
 imgInput.onchange = () => {

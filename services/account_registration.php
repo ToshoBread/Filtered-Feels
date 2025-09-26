@@ -53,7 +53,7 @@ try {
     exit();
 }
 
-$fetchedUser = User::getUser($username);
+$fetchedUser = User::selectUser($username);
 
 try {
     if (! empty($fetchedUser)) {

@@ -35,7 +35,7 @@ abstract class Post
 
     public static function selectAllPosts()
     {
-        $sql = 'SELECT post_id, title, content, header_image, signature FROM PostTable';
+        $sql = 'SELECT post_id, user_id, title, content, header_image, signature FROM PostTable';
 
         return Db::select($sql);
     }
