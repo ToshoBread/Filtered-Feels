@@ -3,7 +3,6 @@ const imgPreview = document.querySelector("#img-preview");
 const noteContent = document.querySelector("#note-content");
 
 const removeImgBtn = document.querySelector("#remove-img-btn");
-removeImgBtn.style.display = "none";
 
 imgInput.onchange = () => {
   const [file] = imgInput.files;

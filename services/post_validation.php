@@ -3,7 +3,7 @@
 session_start();
 
 include_once '../db/Post.php';
-include_once 'helper.php';
+include_once 'util.php';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

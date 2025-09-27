@@ -40,8 +40,13 @@ const editHeaderImg = document.querySelector("#edit-header-img");
 const changeImgBtn = document.querySelector("#change-img-btn");
 const removeImgBtn = document.querySelector("#remove-img-btn");
 
-const editContentArea = document.querySelector("#edit-content-area");
+const postTitle = document.querySelector("#title");
+const postSignature = document.querySelector("#signature");
+const postContent = document.querySelector("#content");
 
+const editContentArea = document.querySelector("#edit-content-area");
+const editTitle = document.querySelector("#edit-title");
+const editSignature = document.querySelector("#edit-signature");
 if (postInputs !== null) {
   postInputs.forEach((detail) => {
     detail.classList.add("d-none");
@@ -49,6 +54,8 @@ if (postInputs !== null) {
 }
 
 if (editPostBtn !== null) {
+  const savedHeaderImg = headerImg.src;
+
   editPostBtn.onclick = () => {
     postDetails.forEach((detail) => {
       detail.classList.add("d-none");
@@ -67,6 +74,21 @@ if (editPostBtn !== null) {
     postInputs.forEach((detail) => {
       detail.classList.add("d-none");
     });
+
+    if (savedHeaderImg !== headerImg.src) {
+      headerImg.src = savedHeaderImg;
+    }
+
+    editTitle.value = postTitle.innerText;
+    editSignature.value = postSignature.innerText;
+    editContentArea.value = postContent.innerText;
+  };
+
+  editHeaderImg.onchange = () => {
+    const [file] = editHeaderImg.files;
+    if (file) {
+      headerImg.src = URL.createObjectURL(file);
+    }
   };
 
   editContentArea.oninput = () => {
@@ -75,6 +97,7 @@ if (editPostBtn !== null) {
   };
 
   removeImgBtn.onclick = () => {
+    editHeaderImg.value = "";
     headerImg.src = "";
   };
 }

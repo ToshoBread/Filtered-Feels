@@ -78,7 +78,7 @@ $createdOn = strtok($post['created_on'], ' ');
 
 
             <div class="card-body">
-                <form action="" method="post" id="edit-post-form"></form>
+                <form action="" method="post" id="edit-post-form" enctype="multipart/form-data"></form>
 
                 <?php if ($_SESSION['user_id'] === $post['user_id'] || $_SESSION['role'] === 'Admin') { ?>
 
@@ -86,14 +86,15 @@ $createdOn = strtok($post['created_on'], ' ');
 
                 <div class="d-flex gap-2 flex-wrap-reverse justify-content-center mb-2">
 
-                    <div id="change-img-btn" class="post-input input-group-text">
-                        <label for="edit-header-img" class="btn">Change Image</label>
+                    <div id="change-img-btn" class="post-input">
+                        <label for="edit-header-img" class="btn btn-secondary">Upload New Image</label>
                         <input type="file"
                             accept="image/*"
                             id="edit-header-img"
-                            class="form-control-sm"
+                            class="d-none"
                             style="cursor: pointer; user-select: none;"
                         />
+                        <span id='display-new-image'></span>
                     </div>
 
                     <button form='edit-post-form' type="submit" id="save-edit-btn" class="post-input btn btn-primary px-4">Save</button>
@@ -103,6 +104,7 @@ $createdOn = strtok($post['created_on'], ' ');
                 <input
                     form="edit-post-form"
                     type="text" 
+                    id="edit-title"
                     name="edit-title"
                     placeholder="<?= $title?>"
                     value="<?= $title?>"
@@ -143,11 +145,11 @@ $createdOn = strtok($post['created_on'], ' ');
                 </textarea>
                 <?php }?>
 
-                <p class="post-detail card-title fs-1 fw-bolder"><?= $title?></p>
-                <p class="post-detail fs-5 fw-semibold">by <?= $signature?></p>
+                <p id="title" class="post-detail card-title fs-1 fw-bolder"><?= $title?></p>
+                <p class="post-detail fs-5 fw-semibold">by <span id="signature"><?= $signature?></span></p>
                 <p class="post-detail card-text text-secondary"><?= 'Posted on: '.$createdOn?></p>
                 <hr class="post-detail"/>
-                <p class="post-detail card-text fs-5">
+                <p id="content" class="post-detail card-text fs-5">
                     <?= $content?>
                 </p>
             </div>

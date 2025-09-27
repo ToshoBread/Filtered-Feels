@@ -1,7 +1,7 @@
 <?php
 
 include_once '../db/User.php';
-include_once 'helper.php';
+include_once 'util.php';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
