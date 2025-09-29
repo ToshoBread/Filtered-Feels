@@ -25,7 +25,7 @@ try {
         throw new Exception('User does not exist');
     }
 
-    if ($userId !== 0 && $userId !== $post['user_id']) {
+    if (($userId !== $post['user_id'] || ($userId !== 0 && $post['user_id'] === null))) {
         throw new Exception('User to Post mismatch');
     }
 } catch (Exception $e) {
@@ -56,14 +56,18 @@ $createdOn = strtok($post['created_on'], ' ');
     </head>
     <body class="bg-secondary-subtle" style="min-height: 100vh;">
         <?= Navbar()?>
+        <input type="hidden" form="edit-post-form" name="post_id" value="<?= htmlspecialchars($postId) ?>">
+        <input type="hidden" form="edit-post-form" name="user_id" value="<?= htmlspecialchars($userId) ?>">
         <div class="card container p-0 pb-2 shadow border-secondary rounded-0 rounded-bottom" >
 
-            <?php if ($headerImage) {?>
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
-                <img src="<?= getImage($headerImage)?>"
-                    id="header-img"
-                    class="card-img-top rounded-0 object-fit-cover"
+                <img
+                    <?php if ($headerImage) {?>
+                    src="<?= getImage($headerImage)?>"
                     style="aspect-ratio: 4/2; object-position: center;"
+                    <?php }?>
+                    class="card-img-top rounded-0 object-fit-cover"
+                    id="header-img"
                 />
                 <div class="post-input card-img-overlay m-2">
                     <button
@@ -74,13 +78,12 @@ $createdOn = strtok($post['created_on'], ' ');
                     ><i class="bi bi-x-lg fs-6"></i></button>
                 </div>
             </div>
-            <?php }?>
 
 
             <div class="card-body">
-                <form action="" method="post" id="edit-post-form" enctype="multipart/form-data"></form>
+                <form action="../services/edit_post_validation.php" method="post" id="edit-post-form" enctype="multipart/form-data"></form>
 
-                <?php if ($_SESSION['user_id'] === $post['user_id'] || $_SESSION['role'] === 'Admin') { ?>
+                <?php if ((isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_id']) || (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin')) { ?>
 
                 <button type="button" id="edit-post-btn" class="post-detail btn btn-outline-secondary border-0 float-end"><i class="bi bi-pencil-square"></i></button>
 
@@ -89,15 +92,16 @@ $createdOn = strtok($post['created_on'], ' ');
                     <div id="change-img-btn" class="post-input">
                         <label for="edit-header-img" class="btn btn-secondary">Upload New Image</label>
                         <input type="file"
+                            form="edit-post-form"
                             accept="image/*"
                             id="edit-header-img"
+                            name="edit-header-img"
                             class="d-none"
                             style="cursor: pointer; user-select: none;"
                         />
-                        <span id='display-new-image'></span>
                     </div>
 
-                    <button form='edit-post-form' type="submit" id="save-edit-btn" class="post-input btn btn-primary px-4">Save</button>
+                    <button form='edit-post-form' type="submit" name="submit" id="save-edit-btn" class="post-input btn btn-primary px-4">Save</button>
                     <button type="button" id="cancel-edit-btn" class="post-input btn btn-danger px-4">Cancel</button>
                 </div>
 

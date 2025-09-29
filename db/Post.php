@@ -4,21 +4,7 @@ require 'db.php';
 
 abstract class Post
 {
-    public static function addPost(string $title, string $content, string $signature, ?string $header_image = null)
-    {
-        $sql = 'INSERT INTO PostTable (title, content, header_image, signature)
-                VALUES (:title, :content, :header_image, :signature)';
-        $values = [
-            ':title' => $title,
-            ':content' => $content,
-            ':header_image' => $header_image,
-            ':signature' => $signature,
-        ];
-
-        Db::query($sql, $values);
-    }
-
-    public static function addPostWithUserId(string $title, string $content, string $signature, int $user_id, ?string $header_image = null)
+    public static function addPost(string $title, string $content, string $signature, ?int $user_id = null, ?string $header_image = null)
     {
         $sql = 'INSERT INTO PostTable (title, content, header_image, signature, user_id)
                 VALUES (:title, :content, :header_image, :signature, :user_id)';
@@ -54,5 +40,29 @@ abstract class Post
         $value = [':post_id' => $post_id];
 
         return Db::selectOne($sql, $value);
+    }
+
+    public static function updatePost(int $post_id, string $title, string $content, string $signature, ?string $header_image = null)
+    {
+        $sql = 'UPDATE PostTable
+        SET title = :title, content = :content, signature = :signature, header_image = :header_image
+        WHERE post_id = :post_id';
+        $value = [
+            ':title' => $title,
+            ':content' => $content,
+            ':signature' => $signature,
+            ':header_image' => $header_image,
+            ':post_id' => $post_id,
+        ];
+
+        return Db::query($sql, $value);
+    }
+
+    public static function deletePost(int $post_id)
+    {
+        $sql = 'DELETE FROM PostTable WHERE post_id = :post_id';
+        $value = [':post_id' => $post_id];
+
+        return Db::query($sql, $value);
     }
 }

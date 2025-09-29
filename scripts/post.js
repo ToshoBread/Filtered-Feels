@@ -47,6 +47,7 @@ const postContent = document.querySelector("#content");
 const editContentArea = document.querySelector("#edit-content-area");
 const editTitle = document.querySelector("#edit-title");
 const editSignature = document.querySelector("#edit-signature");
+
 if (postInputs !== null) {
   postInputs.forEach((detail) => {
     detail.classList.add("d-none");
@@ -75,7 +76,7 @@ if (editPostBtn !== null) {
       detail.classList.add("d-none");
     });
 
-    if (savedHeaderImg !== headerImg.src) {
+    if (savedHeaderImg && savedHeaderImg !== headerImg.src) {
       headerImg.src = savedHeaderImg;
     }
 

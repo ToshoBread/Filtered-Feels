@@ -23,7 +23,7 @@ if (! empty($_SESSION['username'])) {
     </head>
     <body class="bg-secondary-subtle" style="min-height: 100vh;">
         <?= Navbar()?>
-        <form action="../services/post_validation.php" method="post" enctype="multipart/form-data" class="container mt-5">
+        <form action="../services/new_post_validation.php" method="post" enctype="multipart/form-data" class="container mt-5">
             <div class="mb-3 input-group-text border border-secondary rounded-1">
                 <label for="title">Title</label>
                 <input
