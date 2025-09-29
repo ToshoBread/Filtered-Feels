@@ -13,6 +13,12 @@ try {
         throw new Exception('Incorrect Request Method');
     }
 
+    if (isset($_POST['delete'])) {
+        Post::deletePost($postId);
+        header('Location: ../pages/index.php');
+        exit();
+    }
+
     if (! isset($_POST['submit'])) {
         throw new Exception('Form Submission Error');
     }

@@ -21,14 +21,15 @@ abstract class Post
 
     public static function selectAllPosts()
     {
-        $sql = 'SELECT post_id, user_id, title, content, header_image, signature FROM PostTable';
+        $sql = 'SELECT post_id, user_id, title, content, header_image, signature FROM PostTable
+        WHERE deleted = 0';
 
         return Db::select($sql);
     }
 
     public static function selectPostByUserId(int $user_id)
     {
-        $sql = 'SELECT * FROM PostTable WHERE user_id = :user_id';
+        $sql = 'SELECT * FROM PostTable WHERE user_id = :user_id AND deleted = 0';
         $value = [':user_id' => $user_id];
 
         return Db::select($sql, $value);
@@ -36,7 +37,7 @@ abstract class Post
 
     public static function selectPostByPostId(int $post_id)
     {
-        $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id';
+        $sql = 'SELECT * FROM PostTable WHERE post_id = :post_id AND deleted = 0';
         $value = [':post_id' => $post_id];
 
         return Db::selectOne($sql, $value);
@@ -60,7 +61,8 @@ abstract class Post
 
     public static function deletePost(int $post_id)
     {
-        $sql = 'DELETE FROM PostTable WHERE post_id = :post_id';
+        $sql = 'UPDATE PostTable SET deleted = TRUE
+        WHERE post_id = :post_id';
         $value = [':post_id' => $post_id];
 
         return Db::query($sql, $value);

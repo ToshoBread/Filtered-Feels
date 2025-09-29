@@ -25,7 +25,7 @@ try {
         throw new Exception('User does not exist');
     }
 
-    if (($userId !== $post['user_id'] || ($userId !== 0 && $post['user_id'] === null))) {
+    if ((($userId !== $post['user_id'] && $userId !== 0) || ($userId === 0 && $post['user_id'] !== null))) {
         throw new Exception('User to Post mismatch');
     }
 } catch (Exception $e) {
@@ -100,7 +100,7 @@ $createdOn = strtok($post['created_on'], ' ');
                             style="cursor: pointer; user-select: none;"
                         />
                     </div>
-
+                    <button form="edit-post-form" type="submit" name="delete" id="delete-post-btn" class="post-input btn btn-danger px-4">Delete Post</button>
                     <button form='edit-post-form' type="submit" name="submit" id="save-edit-btn" class="post-input btn btn-primary px-4">Save</button>
                     <button type="button" id="cancel-edit-btn" class="post-input btn btn-danger px-4">Cancel</button>
                 </div>
