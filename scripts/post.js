@@ -14,11 +14,15 @@ if (allPosts !== null) {
     card.addEventListener("mouseenter", () => {
       card.classList.remove("shadow");
       card.classList.add("shadow-lg");
+      const randomRotateDeg = Math.floor(Math.random() * 5) - 2;
+      const reroll = randomRotateDeg === 0 ? randomRotateDeg : randomRotateDeg;
+      card.style.transform = `rotate(${reroll}deg)`;
     });
 
     card.addEventListener("mouseleave", () => {
       card.classList.remove("shadow-lg");
       card.classList.add("shadow");
+      card.style.transform = `rotate(0deg)`;
     });
 
     card.addEventListener("click", () => {

@@ -18,7 +18,7 @@ class Card
 
     private ?string $headerImage;
 
-    public function __construct(int $postId, string $title, string $content, string $signature, ?int $userId = null, ?string $headerImage = null)
+    public function __construct(int $postId, string $title, string $content, string $signature, ?int $userId, ?string $headerImage)
     {
         $this->postId = $postId;
         $this->title = $title;
@@ -29,12 +29,13 @@ class Card
     }
 
     public function render()
-    {?>
+    {
+        ?>
         <style>
         .post {
             width: 18rem;
             height: 24rem;
-            transition-property: scale, translate, box-shadow;
+            transition-property: scale, translate, box-shadow, transform;
             transition-duration: 0.3s;
             cursor: pointer;
 

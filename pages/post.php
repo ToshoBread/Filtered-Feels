@@ -62,7 +62,7 @@ $createdOn = strtok($post['created_on'], ' ');
         <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
         <input type="hidden" form="edit-post-form" id="deleted-img-flag" name="deleted-img-flag" value="0">
         <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
-        <div class="card container p-0 pb-2 shadow border-secondary rounded-0 rounded-bottom" >
+        <div class="card container-lg p-0 pb-2 shadow border-secondary rounded-0 rounded-bottom" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img

@@ -3,7 +3,7 @@ function Navbar()
 {?>
 
 <nav class="navbar navbar-expand-md navbar-dark text-bg-dark sticky-top shadow">
-    <div class="container-fluid">
+    <div class="container-md">
         <img src="https://placehold.co/50" class="navbar-brand" />
         <button
             class="navbar-toggler"
@@ -25,7 +25,7 @@ function Navbar()
                     aria-label="Close Nav"
                 ></button>
             </div>
-            <div class="offcanvas-body justify-content-end">
+            <div class="offcanvas-body justify-content-end fs-5">
                 <hr />
                 <ul class="navbar-nav gap-4">
                     <li id="nav-new-post" class="nav-item hide">
