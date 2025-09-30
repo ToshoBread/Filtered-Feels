@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 
 if (empty($_SESSION['user_id']) || empty($_SESSION['username'])) {
     header('Location: account.php');

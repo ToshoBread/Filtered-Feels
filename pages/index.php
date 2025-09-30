@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 
 require_once '../db/Post.php';
 require_once '../services/util.php';
@@ -21,12 +22,25 @@ $posts = Post::selectAllPosts();
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
             crossorigin="anonymous"
         />
+        <style>
+        .show {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.2s ease;
+        }
+
+        .hide {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+        }
+        </style>
     </head>
     <body class="bg-secondary-subtle" style="height: 100vh;">
         <?= Navbar()?>
 
         <div class="d-flex justify-content-center my-4">
-            <a href="new_post.php" class="btn btn-primary">Voice your feels</a>
+            <a href="new_post.php" id="new-post" class="btn btn-primary">Write New Post</a>
         </div>
 
         <!--Card-->
@@ -50,6 +64,7 @@ $posts = Post::selectAllPosts();
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+        <script src="../scripts/index.js"></script>
         <script src="../scripts/post.js"></script>
     </body>
 </html>

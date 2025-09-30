@@ -25,14 +25,12 @@ function Navbar()
                     aria-label="Close Nav"
                 ></button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
+            <div class="offcanvas-body justify-content-end">
+                <hr />
+                <ul class="navbar-nav gap-4">
+                    <li id="nav-new-post" class="nav-item hide">
                         <a href="new_post.php" class="nav-link">Write New Post</a>
                     </li>
-                </ul>
-                <hr />
-                <ul class="navbar-nav ms-auto gap-3">
                     <li class="nav-item">
                         <a href="index.php" class="nav-link">Posts</a>
                     </li>
@@ -62,7 +60,7 @@ function Navbar()
     </div>
 </nav>
 <script src="../scripts/navbar.js"></script>
-<?php }
+    <?php }
 if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: ../pages/index.php');

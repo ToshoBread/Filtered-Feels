@@ -31,7 +31,7 @@ class Card
     public function render()
     {?>
         <style>
-        .card {
+        .post {
             width: 18rem;
             height: 24rem;
             transition-property: scale, translate, box-shadow;

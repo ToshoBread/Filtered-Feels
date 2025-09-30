@@ -39,6 +39,7 @@ const headerImgWrapper = document.querySelector("#header-img-wrapper");
 const editHeaderImg = document.querySelector("#edit-header-img");
 const changeImgBtn = document.querySelector("#change-img-btn");
 const removeImgBtn = document.querySelector("#remove-img-btn");
+const deletedImgFlag = document.querySelector("#deleted-img-flag");
 
 const postTitle = document.querySelector("#title");
 const postSignature = document.querySelector("#signature");
@@ -80,6 +81,7 @@ if (editPostBtn !== null) {
       headerImg.src = savedHeaderImg;
     }
 
+    deletedImgFlag.value = "0";
     editTitle.value = postTitle.innerText;
     editSignature.value = postSignature.innerText;
     editContentArea.value = postContent.innerText;
@@ -89,6 +91,7 @@ if (editPostBtn !== null) {
     const [file] = editHeaderImg.files;
     if (file) {
       headerImg.src = URL.createObjectURL(file);
+      deletedImgFlag.value = "0";
     }
   };
 
@@ -100,5 +103,6 @@ if (editPostBtn !== null) {
   removeImgBtn.onclick = () => {
     editHeaderImg.value = "";
     headerImg.src = "";
+    deletedImgFlag.value = "1";
   };
 }

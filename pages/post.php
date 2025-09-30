@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 
 require_once '../db/Post.php';
 require_once '../db/User.php';
@@ -25,7 +26,7 @@ try {
         throw new Exception('User does not exist');
     }
 
-    if ((($userId !== $post['user_id'] && $userId !== 0) || ($userId === 0 && $post['user_id'] !== null))) {
+    if (($userId !== $post['user_id'] && $userId !== 0) || ($userId === 0 && $post['user_id'] !== null)) {
         throw new Exception('User to Post mismatch');
     }
 } catch (Exception $e) {
@@ -50,22 +51,22 @@ $createdOn = strtok($post['created_on'], ' ');
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <style>
-        img[src=""] {display: none}
+        img[src=""] {display: none;}
+        img:not([src=""]){aspect-ratio: 4/2; object-position: center;}
         input[type="file"]::file-selector-button {display: none}
         </style>
     </head>
     <body class="bg-secondary-subtle" style="min-height: 100vh;">
         <?= Navbar()?>
-        <input type="hidden" form="edit-post-form" name="post_id" value="<?= htmlspecialchars($postId) ?>">
-        <input type="hidden" form="edit-post-form" name="user_id" value="<?= htmlspecialchars($userId) ?>">
+        <input type="hidden" form="edit-post-form" name="post-id" value="<?= htmlspecialchars($postId) ?>">
+        <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
+        <input type="hidden" form="edit-post-form" id="deleted-img-flag" name="deleted-img-flag" value="0">
+        <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
         <div class="card container p-0 pb-2 shadow border-secondary rounded-0 rounded-bottom" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img
-                    <?php if ($headerImage) {?>
-                    src="<?= getImage($headerImage)?>"
-                    style="aspect-ratio: 4/2; object-position: center;"
-                    <?php }?>
+                    src="<?= $headerImage ? getImage($headerImage) : null?>"
                     class="card-img-top rounded-0 object-fit-cover"
                     id="header-img"
                 />
@@ -87,22 +88,21 @@ $createdOn = strtok($post['created_on'], ' ');
 
                 <button type="button" id="edit-post-btn" class="post-detail btn btn-outline-secondary border-0 float-end"><i class="bi bi-pencil-square"></i></button>
 
-                <div class="d-flex gap-2 flex-wrap-reverse justify-content-center mb-2">
+                <div class="d-flex gap-2 flex-wrap justify-content-evenly mb-2">
 
-                    <div id="change-img-btn" class="post-input">
-                        <label for="edit-header-img" class="btn btn-secondary">Upload New Image</label>
-                        <input type="file"
-                            form="edit-post-form"
-                            accept="image/*"
-                            id="edit-header-img"
-                            name="edit-header-img"
-                            class="d-none"
-                            style="cursor: pointer; user-select: none;"
-                        />
-                    </div>
+                    <label for="edit-header-img" class="post-input btn btn-secondary">Upload New Image</label>
+                    <input type="file"
+                        form="edit-post-form"
+                        accept="image/*"
+                        id="edit-header-img"
+                        name="edit-header-img"
+                        class="d-none"
+                        style="cursor: pointer; user-select: none;"
+                    />
+
                     <button form="edit-post-form" type="submit" name="delete" id="delete-post-btn" class="post-input btn btn-danger px-4">Delete Post</button>
-                    <button form='edit-post-form' type="submit" name="submit" id="save-edit-btn" class="post-input btn btn-primary px-4">Save</button>
-                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-danger px-4">Cancel</button>
+                    <button form='edit-post-form' type="submit" name="submit" id="save-edit-btn" class="post-input btn btn-outline-success px-4">Save</button>
+                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-outline-danger px-4">Cancel</button>
                 </div>
 
                 <input
@@ -145,8 +145,7 @@ $createdOn = strtok($post['created_on'], ' ');
                     style="resize: none;"
                     aria-required="true"
                     required
-                ><?= $content?>
-                </textarea>
+                ><?= $content?></textarea>
                 <?php }?>
 
                 <p id="title" class="post-detail card-title fs-1 fw-bolder"><?= $title?></p>
