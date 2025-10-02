@@ -58,5 +58,10 @@ $_SESSION['username'] = $username;
 $_SESSION['user_id'] = $user['user_id'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['created_on'] = $user['created_on'];
+if (isset($_SESSION['prev_page'])) {
+    header('Location: '.$_SESSION['prev_page']);
+    exit();
+}
+
 header('Location: ../pages/index.php');
 exit();

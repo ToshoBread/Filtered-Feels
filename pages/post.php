@@ -100,8 +100,8 @@ $createdOn = strtok($post['created_on'], ' ');
                         style="cursor: pointer; user-select: none;"
                     />
 
-                    <button form="edit-post-form" type="submit" name="delete" id="delete-post-btn" class="post-input btn btn-danger px-4">Delete Post</button>
-                    <button form='edit-post-form' type="submit" name="submit" id="save-edit-btn" class="post-input btn btn-outline-success px-4">Save</button>
+                    <button form="edit-post-form" type="button" class="post-input btn btn-danger px-4" data-bs-toggle="modal" data-bs-target="#confirm-delete">Delete Post</button>
+                    <button form="edit-post-form" type="button" class="post-input btn btn-outline-success px-4" data-bs-toggle="modal" data-bs-target="#confirm-save">Save</button>
                     <button type="button" id="cancel-edit-btn" class="post-input btn btn-outline-danger px-4">Cancel</button>
                 </div>
 
@@ -158,19 +158,37 @@ $createdOn = strtok($post['created_on'], ' ');
             </div>
         </div>
         <!--Modals-->
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
+        <div id="confirm-save" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">Confirm</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+                        <p>Are you sure you want to save changes?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button form="edit-post-form" type="submit" name="submit" id="delete-post-btn" class="btn btn-outline-success">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirm-delete" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this post?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button form="edit-post-form" type="submit" name="delete" id="delete-post-btn" class="btn btn-danger">Delete Post</button>
                     </div>
                 </div>
             </div>
