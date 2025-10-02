@@ -51,12 +51,24 @@ $createdOn = strtok($post['created_on'], ' ');
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <style>
-        img[src=""] {display: none;}
+        body {
+            background: linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
+            background: #6c1273;
+            background: -webkit-linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
+            background: -moz-linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
+            background: linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(
+                startColorstr="#6C1273",
+                endColorstr="#6A2D87",
+                GradientType=0
+                );
+        }
         img:not([src=""]){aspect-ratio: 4/2; object-position: center;}
+        img[src=""], img[src="#"] {display: none;}
         input[type="file"]::file-selector-button {display: none}
         </style>
     </head>
-    <body class="bg-secondary-subtle" style="min-height: 100vh;">
+    <body>
         <?= Navbar()?>
         <input type="hidden" form="edit-post-form" name="post-id" value="<?= htmlspecialchars($postId) ?>">
         <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
@@ -137,12 +149,11 @@ $createdOn = strtok($post['created_on'], ' ');
                 <hr class="post-input"/>
                 <textarea
                     form="edit-post-form"
-                    type="text"
                     id="edit-content-area"
                     name="edit-content-area"
-                    rows="1"
                     class="post-input form-control overflow-hidden"
-                    style="resize: none;"
+                    style="resize: none; field-sizing: content;"
+                    placeholder="<?= $content?>"
                     aria-required="true"
                     required
                 ><?= $content?></textarea>

@@ -39,7 +39,6 @@ const postDetails = document.querySelectorAll(".post-detail");
 const postInputs = document.querySelectorAll(".post-input");
 
 const headerImg = document.querySelector("#header-img");
-const headerImgWrapper = document.querySelector("#header-img-wrapper");
 const editHeaderImg = document.querySelector("#edit-header-img");
 const changeImgBtn = document.querySelector("#change-img-btn");
 const removeImgBtn = document.querySelector("#remove-img-btn");
@@ -77,12 +76,16 @@ if (editPostBtn !== null) {
       detail.classList.remove("d-none");
     });
 
-    postInputs.forEach((detail) => {
-      detail.classList.add("d-none");
+    postInputs.forEach((inputs) => {
+      inputs.classList.add("d-none");
     });
 
-    if (savedHeaderImg && savedHeaderImg !== headerImg.src) {
+    if (savedHeaderImg !== headerImg.src) {
       headerImg.src = savedHeaderImg;
+    }
+
+    if (headerImg.src === window.location.href) {
+      headerImg.src = "#";
     }
 
     deletedImgFlag.value = "0";
