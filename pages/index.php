@@ -22,25 +22,15 @@ $posts = Post::selectAllPosts();
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="../styles/base.css">
         <style>
-        .show {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.2s ease;
-        }
-
-        .hide {
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-        }
         </style>
     </head>
-    <body class="bg-secondary-subtle" style="height: 100vh;">
+    <body>
         <?= Navbar()?>
 
         <div class="d-flex justify-content-center my-4">
-            <a href="new_post.php" id="new-post" class="btn btn-primary">Write New Post</a>
+            <a href="new_post.php" id="new-post" class="btn btn-outline-light">Write New Post</a>
         </div>
 
         <!--Card-->

@@ -3,18 +3,22 @@ const navNewPostBtn = document.querySelector("#nav-new-post");
 const navbar = document.querySelector(".navbar");
 const navbarHeight = navbar.offsetHeight - newPostBtn.offsetHeight;
 
+window.onload = () => {
+  navNewPostBtn.classList.add("hide-btn");
+};
+
 window.onscroll = () => {
   const bounds = newPostBtn.getBoundingClientRect();
 
   if (bounds.top < navbarHeight) {
-    newPostBtn.classList.remove("show");
-    newPostBtn.classList.add("hide");
-    navNewPostBtn.classList.remove("hide");
-    navNewPostBtn.classList.add("show");
+    newPostBtn.classList.remove("show-btn");
+    newPostBtn.classList.add("hide-btn");
+    navNewPostBtn.classList.remove("hide-btn");
+    navNewPostBtn.classList.add("show-btn");
   } else {
-    newPostBtn.classList.remove("hide");
-    newPostBtn.classList.add("show");
-    navNewPostBtn.classList.remove("show");
-    navNewPostBtn.classList.add("hide");
+    newPostBtn.classList.remove("hide-btn");
+    newPostBtn.classList.add("show-btn");
+    navNewPostBtn.classList.remove("show-btn");
+    navNewPostBtn.classList.add("hide-btn");
   }
 };

@@ -30,22 +30,12 @@ class Card
 
     public function render()
     {
+        /* TODO: Create custom shadows for glow */
         ?>
-        <style>
-        .post {
-            width: 18rem;
-            height: 24rem;
-            transition-property: scale, translate, box-shadow, transform;
-            transition-duration: 0.3s;
-            cursor: pointer;
-
-            &:hover {
-                scale: 1.03;
-                translate: 0px -0.5rem;
-            }
-        }
-        </style>
-        <div class="post card border-secondary shadow" data-post-id="<?= $this->postId ?>" data-user-id="<?= $this->userId ?? 0 ?>">
+        <div class="post card text-light border border-dark"
+            style="box-shadow:0 .5rem 1rem rgba(0,0,0, .25);"
+            data-post-id="<?= $this->postId ?>"
+            data-user-id="<?= $this->userId ?? 0 ?>">
 
             <?php if ($this->headerImage) {?>
 

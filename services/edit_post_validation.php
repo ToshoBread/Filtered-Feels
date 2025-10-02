@@ -20,6 +20,9 @@ try {
             header('Location: '.$_SESSION['prev_page']);
             exit();
         }
+
+        header('Location: ../pages/index.php');
+        exit();
     }
 
     if (! isset($_POST['submit'])) {

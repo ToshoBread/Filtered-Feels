@@ -15,6 +15,7 @@ require_once '../components/navbar.php';
             integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="../styles/base.css">
     </head>
     <body class="bg-secondary-subtle" style="height: 100vh">
         <?= Navbar()?>
@@ -60,10 +61,10 @@ require_once '../components/navbar.php';
                     type="submit"
                     value="Login"
                     name="login-submit"
-                    class="btn btn-success my-3 col col-12"
+                    class="btn btn-outline-success my-3 col col-12"
                     aria-label="Submit"
                 />
-                <button type="button" id="swap-to-reg" class="btn btn-outline-dark col col-12">
+                <button type="button" id="swap-to-reg" class="btn btn-outline-secondary col col-12">
                     No Account? Register Here
                 </button>
             </form>
@@ -121,10 +122,10 @@ require_once '../components/navbar.php';
                     type="submit"
                     value="Register"
                     name="reg-submit"
-                    class="btn btn-primary my-3 col col-12"
+                    class="btn btn-outline-primary my-3 col col-12"
                     aria-label="Submit"
                 />
-                <button type="button" id="swap-to-login" class="btn btn-outline-dark col col-12">
+                <button type="button" id="swap-to-login" class="btn btn-outline-secondary col col-12">
                     Have an account? Login here
                 </button>
             </form>

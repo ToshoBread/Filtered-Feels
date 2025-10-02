@@ -50,19 +50,8 @@ $createdOn = strtok($post['created_on'], ' ');
         <title>Filtered Feels: <?= $post['title']?></title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="../styles/base.css">
         <style>
-        body {
-            background: linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
-            background: #6c1273;
-            background: -webkit-linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
-            background: -moz-linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
-            background: linear-gradient(40deg,rgba(108, 18, 115, 1) 0%, rgba(150, 33, 150, 1) 55%, rgba(106, 45, 135, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(
-                startColorstr="#6C1273",
-                endColorstr="#6A2D87",
-                GradientType=0
-                );
-        }
         img:not([src=""]){aspect-ratio: 4/2; object-position: center;}
         img[src=""], img[src="#"] {display: none;}
         input[type="file"]::file-selector-button {display: none}
@@ -74,7 +63,8 @@ $createdOn = strtok($post['created_on'], ' ');
         <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
         <input type="hidden" form="edit-post-form" id="deleted-img-flag" name="deleted-img-flag" value="0">
         <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
-        <div class="card container-lg p-0 pb-2 shadow border-secondary rounded-0 rounded-bottom" >
+        <div class="card container-lg p-0 pb-2 rounded-0 rounded-bottom text-light"
+            style="background: rgb(238, 238, 238, 0);" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img
@@ -98,7 +88,7 @@ $createdOn = strtok($post['created_on'], ' ');
 
                 <?php if ((isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_id']) || (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin')) { ?>
 
-                <button type="button" id="edit-post-btn" class="post-detail btn btn-outline-secondary border-0 float-end"><i class="bi bi-pencil-square"></i></button>
+                <button type="button" id="edit-post-btn" class="post-detail btn btn-outline-light border-0 float-end"><i class="bi bi-pencil-square"></i></button>
 
                 <div class="d-flex gap-2 flex-wrap justify-content-evenly mb-2">
 
@@ -113,8 +103,8 @@ $createdOn = strtok($post['created_on'], ' ');
                     />
 
                     <button form="edit-post-form" type="button" class="post-input btn btn-danger px-4" data-bs-toggle="modal" data-bs-target="#confirm-delete">Delete Post</button>
-                    <button form="edit-post-form" type="button" class="post-input btn btn-outline-success px-4" data-bs-toggle="modal" data-bs-target="#confirm-save">Save</button>
-                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-outline-danger px-4">Cancel</button>
+                    <button form="edit-post-form" type="button" class="post-input btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#confirm-save">Save</button>
+                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-danger px-4">Cancel</button>
                 </div>
 
                 <input
@@ -161,7 +151,7 @@ $createdOn = strtok($post['created_on'], ' ');
 
                 <p id="title" class="post-detail card-title fs-1 fw-bolder"><?= $title?></p>
                 <p class="post-detail fs-5 fw-semibold">by <span id="signature"><?= $signature?></span></p>
-                <p class="post-detail card-text text-secondary"><?= 'Posted on: '.$createdOn?></p>
+                <p class="post-detail card-text"><?= 'Posted on: '.$createdOn?></p>
                 <hr class="post-detail"/>
                 <p id="content" class="post-detail card-text fs-5">
                     <?= $content?>

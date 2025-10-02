@@ -30,10 +30,11 @@ $username = $_SESSION['username'];
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         />
+        <link rel="stylesheet" href="../styles/base.css">
     </head>
-    <body class="bg-secondary-subtle" style="min-height: 100vh">
+    <body>
         <?= Navbar()?>
-        <div class="container-fluid p-4 mb-4 border border-secondary rounded-bottom shadow">
+        <div class="container-fluid p-4 mb-4 rounded-bottom shadow text-light">
             <h4 class="text-center"><?= $username.(substr($username, -1) === 's' ? "'" : "'s") ?> Profile</h4>
             <hr />
             <div class="d-flex justify-content-evenly">
