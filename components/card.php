@@ -16,24 +16,26 @@ class Card
 
     private string $signature;
 
+    private string $borderColor;
+
     private ?string $headerImage;
 
-    public function __construct(int $postId, string $title, string $content, string $signature, ?int $userId, ?string $headerImage)
+    public function __construct(int $postId, string $title, string $content, ?string $signature = 'Someone', ?string $borderColor = 'FFFFFF', ?int $userId = 0, ?string $headerImage = null)
     {
         $this->postId = $postId;
         $this->title = $title;
         $this->content = $content;
         $this->signature = $signature;
+        $this->borderColor = $borderColor;
         $this->userId = $userId;
         $this->headerImage = $headerImage;
     }
 
     public function render()
     {
-        /* TODO: Create custom shadows for glow */
         ?>
-        <div class="post card text-light border border-dark"
-            style="box-shadow:0 .5rem 1rem rgba(0,0,0, .25);"
+        <div class="post card text-light shadow"
+            style="border: solid 1px #<?= $this->borderColor ?>;"
             data-post-id="<?= $this->postId ?>"
             data-user-id="<?= $this->userId ?? 0 ?>">
 

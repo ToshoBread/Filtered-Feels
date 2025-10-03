@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (! empty($_SESSION['user_id']) || ! empty($_SESSION['username'])) {
+    header('Location: index.php');
+}
+
 require_once '../components/navbar.php';
 ?>
 <!doctype html>
@@ -17,7 +21,7 @@ require_once '../components/navbar.php';
         />
         <link rel="stylesheet" href="../styles/base.css">
     </head>
-    <body class="bg-secondary-subtle" style="height: 100vh">
+    <body>
         <?= Navbar()?>
         <div
             class="container-fluid row align-items-center justify-content-center h-75"
@@ -27,14 +31,14 @@ require_once '../components/navbar.php';
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="login-form"
-                class="col col-auto p-4 border border-secondary rounded-1 shadow"
+                class="col col-auto p-4 border rounded-3 shadow"
             >
                 <div class="form-floating my-3">
                     <input
                         type="text"
                         minlength="8"
                         maxlength="30"
-                        class="form-control border border-secondary"
+                        class="form-control border"
                         name="login-username"
                         placeholder=""
                         aria-required="true"
@@ -48,7 +52,7 @@ require_once '../components/navbar.php';
                         type="password"
                         minlength="8"
                         maxlength="255"
-                        class="form-control border border-secondary"
+                        class="form-control border"
                         name="login-password"
                         placeholder=""
                         aria-required="true"
@@ -75,14 +79,14 @@ require_once '../components/navbar.php';
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="register-form"
-                class="col col-auto p-4 border border-secondary rounded-1 d-none shadow"
+                class="col col-auto p-4 border rounded-1 d-none shadow"
             >
                 <div class="form-floating my-3">
                     <input
                         type="text"
                         minlength="8"
                         maxlength="30"
-                        class="form-control border border-secondary"
+                        class="form-control border"
                         name="reg-username"
                         placeholder=""
                         aria-required="true"
@@ -96,7 +100,7 @@ require_once '../components/navbar.php';
                         type="password"
                         minlength="8"
                         maxlength="255"
-                        class="form-control border border-secondary"
+                        class="form-control border"
                         name="reg-password"
                         placeholder=""
                         aria-required="true"
@@ -109,7 +113,7 @@ require_once '../components/navbar.php';
                     <input
                         type="password"
                         maxlength="30"
-                        class="form-control border border-secondary"
+                        class="form-control border"
                         name="confirm-pass"
                         placeholder=""
                         aria-required="true"

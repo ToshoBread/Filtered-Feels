@@ -1,5 +1,38 @@
 <?php
 
+enum Colors
+{
+    case White;
+    case Black;
+    case Red;
+    case Blue;
+    case Yellow;
+    case Purple;
+    case Green;
+    case Orange;
+    case Indigo;
+    case Pink;
+    case Teal;
+}
+
+function colorToHex(Colors $color)
+{
+    return match ($color) {
+        Colors::Red => 'FF0000',
+        Colors::Blue => '0000FF',
+        Colors::Yellow => 'FFFF00',
+        Colors::Purple => '870087',
+        Colors::Green => '008700',
+        Colors::Orange => 'FFAF00',
+        Colors::Indigo => '5F0087',
+        Colors::Pink => 'FFAFD7',
+        Colors::Teal => '008787',
+        Colors::Black => '000000',
+        Colors::White => 'FFFFFF',
+        default => 'FFFFFF'
+    };
+}
+
 function addToErrLog(string $headerMessage, string $errMessage)
 {
     $dateTime = new DateTime('now', new DateTimeZone('Asia/Manila'));

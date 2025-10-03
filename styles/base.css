@@ -53,6 +53,10 @@ body {
   visibility: hidden;
 }
 
+img[src=""] {
+  display: none;
+}
+
 .post {
   width: 18rem;
   height: 24rem;
@@ -67,15 +71,44 @@ body {
 
   &:hover {
     scale: 1.03;
-    translate: 0px -0.5rem;
+    translate: 0px -0.8rem;
   }
 }
 
 input:is([type="text"]),
 input:is([type="password"]),
-input:is([type="file"]),
 textarea,
-label {
+label,
+textarea::placeholder,
+textarea::-webkit-input-placeholder {
   color: white !important;
-  background: transparent !important;
+  background: transparent;
+}
+
+input[type="file"]::file-selector-button {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+  user-select: none;
+}
+
+textarea {
+  resize: none;
+  field-sizing: content;
+}
+
+.color-circle {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+}
+
+input[type="radio"] + span {
+  border: solid 1px gray;
+}
+
+input[type="radio"]:checked + span {
+  border: solid 2px white;
 }

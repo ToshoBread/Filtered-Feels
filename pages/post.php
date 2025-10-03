@@ -142,7 +142,6 @@ $createdOn = strtok($post['created_on'], ' ');
                     id="edit-content-area"
                     name="edit-content-area"
                     class="post-input form-control overflow-hidden"
-                    style="resize: none; field-sizing: content;"
                     placeholder="<?= $content?>"
                     aria-required="true"
                     required

@@ -1,8 +1,9 @@
 const imgInput = document.querySelector("#input-header-img");
 const imgPreview = document.querySelector("#img-preview");
 const noteContent = document.querySelector("#note-content");
-
 const removeImgBtn = document.querySelector("#remove-img-btn");
+const colorRadios = document.querySelectorAll('input[name="color"]');
+const newPostForm = document.querySelector("#new-post-form");
 
 imgInput.onchange = () => {
   const [file] = imgInput.files;
@@ -23,3 +24,12 @@ removeImgBtn.onclick = () => {
   noteContent.classList.remove("rounded-bottom-1");
   removeImgBtn.style.display = "none";
 };
+
+newPostForm.style.border = "solid 1px white";
+colorRadios.forEach((color) => {
+  color.onchange = () => {
+    if (color.checked) {
+      newPostForm.style.border = `solid 1px #${color.value}`;
+    }
+  };
+});

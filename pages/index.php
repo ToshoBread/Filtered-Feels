@@ -45,6 +45,7 @@ $posts = Post::selectAllPosts();
                     $current['title'],
                     $current['content'],
                     $current['signature'],
+                    $current['border_color'],
                     $current['user_id'],
                     $current['header_image']
                 ))->render();

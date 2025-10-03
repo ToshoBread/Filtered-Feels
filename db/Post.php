@@ -4,15 +4,16 @@ require 'db.php';
 
 abstract class Post
 {
-    public static function addPost(string $title, string $content, string $signature, ?int $user_id = null, ?string $header_image = null)
+    public static function addPost(string $title, string $content, ?string $signature = 'Someone', ?string $border_color = 'FFFFFF', ?int $user_id = null, ?string $header_image = null)
     {
-        $sql = 'INSERT INTO PostTable (title, content, header_image, signature, user_id)
-                VALUES (:title, :content, :header_image, :signature, :user_id)';
+        $sql = 'INSERT INTO PostTable (title, content, header_image, signature, border_color, user_id)
+        VALUES (:title, :content, :header_image, :signature, :user_id)';
         $values = [
             ':title' => $title,
             ':content' => $content,
             ':header_image' => $header_image,
             ':signature' => $signature,
+            ':border_color' => $border_color,
             ':user_id' => $user_id,
         ];
 
@@ -21,7 +22,8 @@ abstract class Post
 
     public static function selectAllPosts()
     {
-        $sql = 'SELECT post_id, user_id, title, content, header_image, signature FROM PostTable
+        $sql = 'SELECT post_id, user_id, title, content, header_image, signature, border_color
+        FROM PostTable
         WHERE deleted = 0';
 
         return Db::select($sql);
@@ -43,15 +45,16 @@ abstract class Post
         return Db::selectOne($sql, $value);
     }
 
-    public static function updatePost(int $post_id, string $title, string $content, string $signature, ?string $header_image = null)
+    public static function updatePost(int $post_id, string $title, string $content, ?string $signature = 'Someone', ?string $border_color = 'FFFFFF', ?string $header_image = null)
     {
         $sql = 'UPDATE PostTable
-        SET title = :title, content = :content, signature = :signature, header_image = :header_image
+        SET title = :title, content = :content, signature = :signature, border_color = :border_color, header_image = :header_image
         WHERE post_id = :post_id';
         $value = [
             ':title' => $title,
             ':content' => $content,
             ':signature' => $signature,
+            ':border_color' => $border_color,
             ':header_image' => $header_image,
             ':post_id' => $post_id,
         ];
