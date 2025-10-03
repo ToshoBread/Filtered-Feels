@@ -2,7 +2,7 @@
 
 class Card
 {
-    private $contentMaxLength = 315;
+    private $contentMaxLength = 320;
 
     private $contentMaxLenWithImg = 120;
 
@@ -35,7 +35,7 @@ class Card
     {
         ?>
         <div class="post card text-light shadow"
-            style="border: solid 1px #<?= $this->borderColor ?>;"
+            style="border: solid 0.15rem #<?= $this->borderColor ?>;"
             data-post-id="<?= $this->postId ?>"
             data-user-id="<?= $this->userId ?? 0 ?>">
 

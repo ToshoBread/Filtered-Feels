@@ -25,11 +25,11 @@ removeImgBtn.onclick = () => {
   removeImgBtn.style.display = "none";
 };
 
-newPostForm.style.border = "solid 1px white";
+newPostForm.style.border = "solid 0.1rem white";
 colorRadios.forEach((color) => {
   color.onchange = () => {
     if (color.checked) {
-      newPostForm.style.border = `solid 1px #${color.value}`;
+      newPostForm.style.border = `solid 0.1rem #${color.value}`;
     }
   };
 });

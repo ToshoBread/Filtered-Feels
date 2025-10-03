@@ -27,6 +27,7 @@ try {
 $title = htmlspecialchars(trim($_POST['title']));
 $signature = htmlspecialchars(trim($_POST['signature'] ?? 'Someone'));
 $postContent = htmlspecialchars(trim($_POST['post-content']));
+$color = htmlspecialchars(trim($_POST['color']) ?? 'FFFFFF');
 
 try {
     if (empty($title)) {
@@ -46,7 +47,9 @@ try {
     exit();
 }
 
-$userId = $_SESSION['user_id'];
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+}
 
 try {
     if (! empty($_FILES['header-img']['name'])) {
@@ -68,9 +71,9 @@ try {
             throw new Exception('Failed to upload Image.');
         }
         if (isset($userId)) {
-            Post::addPost($title, $postContent, $signature, user_id: $userId, header_image: $fileName);
+            Post::addPost($title, $postContent, $signature, border_color: $color, user_id: $userId, header_image: $fileName);
         } else {
-            Post::addPost($title, $postContent, $signature, header_image: $fileName);
+            Post::addPost($title, $postContent, $signature, border_color: $color, header_image: $fileName);
         }
 
         header('Location: ../pages/index.php');
@@ -84,9 +87,9 @@ try {
 }
 
 if (isset($userId)) {
-    Post::addPost($title, $postContent, $signature, user_id: $userId);
+    Post::addPost($title, $postContent, $signature, border_color: $color, user_id: $userId);
 } else {
-    Post::addPost($title, $postContent, $signature);
+    Post::addPost($title, $postContent, $signature, border_color: $color);
 }
 
 header('Location: ../pages/index.php');

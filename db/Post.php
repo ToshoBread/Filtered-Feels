@@ -7,7 +7,7 @@ abstract class Post
     public static function addPost(string $title, string $content, ?string $signature = 'Someone', ?string $border_color = 'FFFFFF', ?int $user_id = null, ?string $header_image = null)
     {
         $sql = 'INSERT INTO PostTable (title, content, header_image, signature, border_color, user_id)
-        VALUES (:title, :content, :header_image, :signature, :user_id)';
+        VALUES (:title, :content, :header_image, :signature, :border_color, :user_id)';
         $values = [
             ':title' => $title,
             ':content' => $content,

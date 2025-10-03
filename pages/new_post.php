@@ -60,7 +60,7 @@ require_once '../services/util.php';
                 <?php
                 foreach (Colors::cases() as $color) { ?>
                 <label>
-                    <input type="radio" value="<?= colorToHex($color)?>" name="color" class="d-none"
+                    <input type="radio" value="<?= colorToHex($color)?>" tabindex="-1" name="color" class="d-none"
                         <?= colorToHex($color) === 'FFFFFF' && 'checked'?>
                     />
                     <span class="color-circle rounded-circle"

@@ -29,11 +29,10 @@ $posts = Post::selectAllPosts();
     <body>
         <?= Navbar()?>
 
-        <div class="d-flex justify-content-center my-4">
-            <a href="new_post.php" id="new-post" class="btn btn-outline-light">Write New Post</a>
+        <div class="d-flex justify-content-center my-5">
+            <a href="new_post.php" id="new-post" class="btn btn-outline-light fs-4">Write New Post</a>
         </div>
 
-        <!--Card-->
         <!--TODO: Fix Card Wrap Layout-->
         <div
             class="container-fluid d-flex justify-content-center flex-wrap gap-5"

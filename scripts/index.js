@@ -1,7 +1,6 @@
 const newPostBtn = document.querySelector("#new-post");
 const navNewPostBtn = document.querySelector("#nav-new-post");
 const navbar = document.querySelector(".navbar");
-const navbarHeight = navbar.offsetHeight - newPostBtn.offsetHeight;
 
 window.onload = () => {
   navNewPostBtn.classList.add("hide-btn");
@@ -10,7 +9,7 @@ window.onload = () => {
 window.onscroll = () => {
   const bounds = newPostBtn.getBoundingClientRect();
 
-  if (bounds.top < navbarHeight) {
+  if (bounds.top < -newPostBtn.offsetHeight) {
     newPostBtn.classList.remove("show-btn");
     newPostBtn.classList.add("hide-btn");
     navNewPostBtn.classList.remove("hide-btn");

@@ -24,14 +24,15 @@ require_once '../components/navbar.php';
     <body>
         <?= Navbar()?>
         <div
-            class="container-fluid row align-items-center justify-content-center h-75"
+            class="d-flex justify-content-center h-75"
         >
             <form
                 action="../services/account_validation.php"
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="login-form"
-                class="col col-auto p-4 border rounded-3 shadow"
+                class="p-4 border rounded-2 shadow"
+                style="margin-top: 6rem;"
             >
                 <div class="form-floating my-3">
                     <input
@@ -79,7 +80,8 @@ require_once '../components/navbar.php';
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="register-form"
-                class="col col-auto p-4 border rounded-1 d-none shadow"
+                class="p-4 border rounded-2 d-none shadow"
+                style="margin-top: 4rem;"
             >
                 <div class="form-floating my-3">
                     <input

@@ -36,6 +36,7 @@ try {
 }
 
 $headerImage = trim($post['header_image']);
+$color = trim($post['border_color']);
 $title = trim($post['title']);
 $signature = trim($post['signature']);
 $content = trim($post['content']);
@@ -63,8 +64,8 @@ $createdOn = strtok($post['created_on'], ' ');
         <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
         <input type="hidden" form="edit-post-form" id="deleted-img-flag" name="deleted-img-flag" value="0">
         <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
-        <div class="card container-lg p-0 pb-2 rounded-0 rounded-bottom text-light"
-            style="background: rgb(238, 238, 238, 0);" >
+        <div class="card container-lg p-0 pb-2 rounded-0 rounded-bottom-2 text-light"
+            style="border: solid 0.2rem #<?= $color?>; border-top: none; background: rgb(238, 238, 238, 0);" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img
@@ -102,9 +103,23 @@ $createdOn = strtok($post['created_on'], ' ');
                         style="cursor: pointer; user-select: none;"
                     />
 
-                    <button form="edit-post-form" type="button" class="post-input btn btn-danger px-4" data-bs-toggle="modal" data-bs-target="#confirm-delete">Delete Post</button>
-                    <button form="edit-post-form" type="button" class="post-input btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#confirm-save">Save</button>
-                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-danger px-4">Cancel</button>
+                    <button form="edit-post-form" type="button" class="post-input btn btn-outline-danger px-4" data-bs-toggle="modal" data-bs-target="#confirm-delete">Delete Post</button>
+                    <button form="edit-post-form" type="button" class="post-input btn btn-outline-success px-4" data-bs-toggle="modal" data-bs-target="#confirm-save">Save</button>
+                    <button type="button" id="cancel-edit-btn" class="post-input btn btn-outline-danger px-4">Cancel</button>
+                </div>
+
+                <h6 class="post-input text-center text-light mt-4" style="user-select: none;">Border Color:</h6>
+                <div class="post-input d-flex gap-3 flex-wrap justify-content-center mt-2 mb-4">
+                    <?php
+                    foreach (Colors::cases() as $color) { ?>
+                    <label>
+                        <input type="radio" value="<?= colorToHex($color)?>" tabindex="-1" name="color" class="d-none"
+                            <?= colorToHex($color) === 'FFFFFF' && 'checked'?>
+                        />
+                        <span class="color-circle rounded-circle"
+                            style="background: #<?= colorToHex($color)?>;"></span>
+                    </label>
+                    <?php }?>
                 </div>
 
                 <input
