@@ -80,5 +80,10 @@ function isValidImage($file)
         throw new Exception('Invalid File Format: '.$fileExt);
     }
 
+    $maxSizeBytes = 2000000;
+    if ($file['size'] > $maxSizeBytes) {
+        throw new Exception('Exceeded filesize limit');
+    }
+
     return $fileName;
 }

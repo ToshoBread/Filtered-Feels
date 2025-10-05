@@ -5,11 +5,6 @@ session_start();
 include_once '../db/Post.php';
 include_once 'util.php';
 
-$title = '';
-$signature = '';
-$postContent = '';
-$fileName = '';
-
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Incorrect Request Method');
