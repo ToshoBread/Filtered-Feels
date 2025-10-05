@@ -53,7 +53,6 @@ abstract class Db
 
             $query = null;
             $pdo = null;
-            echo 'Query has been successfully executed.';
         } catch (PDOException $e) {
             addToErrLog('Database Query Failed', $e->getMessage());
         }

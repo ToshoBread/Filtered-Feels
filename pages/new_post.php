@@ -16,6 +16,7 @@ require_once '../services/util.php';
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Filtered Feels: New Post</title>
+        <link rel="icon" type="image/x-icon" href="../assets/fav_logo.svg">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="../styles/base.css">
@@ -61,7 +62,7 @@ require_once '../services/util.php';
                 foreach (Colors::cases() as $color) { ?>
                 <label>
                     <input type="radio" value="<?= colorToHex($color)?>" tabindex="-1" name="color" class="d-none"
-                        <?= colorToHex($color) === 'FFFFFF' && 'checked'?>
+                        <?= colorToHex($color) === 'FFFFFF' ? 'checked' : ''?>
                     />
                     <span class="color-circle rounded-circle"
                         style="background: #<?= colorToHex($color)?>;"></span>

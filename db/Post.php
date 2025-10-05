@@ -45,7 +45,7 @@ abstract class Post
         return Db::selectOne($sql, $value);
     }
 
-    public static function updatePost(int $post_id, string $title, string $content, ?string $signature = 'Someone', ?string $border_color = 'FFFFFF', ?string $header_image = null)
+    public static function updatePost(int $post_id, string $title, string $content, string $border_color, ?string $signature = 'Someone', ?string $header_image = null)
     {
         $sql = 'UPDATE PostTable
         SET title = :title, content = :content, signature = :signature, border_color = :border_color, header_image = :header_image
@@ -59,7 +59,7 @@ abstract class Post
             ':post_id' => $post_id,
         ];
 
-        return Db::query($sql, $value);
+        Db::query($sql, $value);
     }
 
     public static function deletePost(int $post_id)
@@ -68,6 +68,6 @@ abstract class Post
         WHERE post_id = :post_id';
         $value = [':post_id' => $post_id];
 
-        return Db::query($sql, $value);
+        Db::query($sql, $value);
     }
 }

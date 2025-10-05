@@ -3,8 +3,8 @@ function Navbar()
 {?>
 
     <nav id="top-nav" class="navbar navbar-expand-md navbar-dark sticky-top shadow">
-        <div class="container-md">
-            <img src="https://placehold.co/50" class="navbar-brand" />
+        <div class="container-lg">
+            <img src="../assets/ff_logo.svg" style="width: 8rem;" class="" />
             <button
                 class="navbar-toggler"
                 data-bs-toggle="offcanvas"

@@ -13,20 +13,19 @@ try {
         throw new Exception('Incorrect Request Method');
     }
 
-    if (isset($_POST['delete'])) {
+    if (! isset($_POST['submit'])) {
+        throw new Exception('Form Submission Error');
+    }
+
+    if ($_POST['submit'] === 'delete') {
         Post::deletePost($postId);
         if (! empty($_SESSION['prev_page'])) {
-            $uri = $_SESSION['prev_page'];
             header('Location: '.$_SESSION['prev_page']);
             exit();
         }
 
         header('Location: ../pages/index.php');
         exit();
-    }
-
-    if (! isset($_POST['submit'])) {
-        throw new Exception('Form Submission Error');
     }
 } catch (Exception $e) {
     addToErrLog('Form Error', $e->getMessage());
@@ -37,6 +36,7 @@ try {
 $title = htmlspecialchars(trim($_POST['edit-title']));
 $signature = htmlspecialchars(trim($_POST['edit-signature'] ?? 'Someone'));
 $postContent = htmlspecialchars(trim($_POST['edit-content-area']));
+$color = htmlspecialchars(trim($_POST['color'] ?? 'FFFFFF'));
 $currHeaderImg = htmlspecialchars($_POST['curr-header-img']);
 $deletedImgFlag = (bool) htmlspecialchars($_POST['deleted-img-flag']);
 
@@ -85,7 +85,14 @@ try {
             throw new Exception('Failed to upload Image.');
         }
 
-        Post::updatePost($postId, $title, $postContent, $signature, header_image: $fileName);
+        Post::updatePost(
+            post_id: $postId,
+            title: $title,
+            content: $postContent,
+            signature: $signature,
+            border_color: $color,
+            header_image: $fileName,
+        );
 
         if ($currHeaderImg) {
             file_exists($uploadDest.$currHeaderImg) && unlink($uploadDest.$currHeaderImg);
@@ -96,19 +103,33 @@ try {
     }
 
     if ($deletedImgFlag) {
-        Post::updatePost($postId, $title, $postContent, $signature);
+        Post::updatePost(
+            post_id: $postId,
+            title: $title,
+            content: $postContent,
+            signature: $signature,
+            border_color: $color,
+        );
+
         file_exists($uploadDest.$currHeaderImg) && unlink($uploadDest.$currHeaderImg);
+        header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+        exit();
     }
 
-    header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
-    exit();
 } catch (Exception $e) {
     addToErrLog('Image handling Error', $e->getMessage());
     header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
     exit();
 }
 
-Post::updatePost($postId, $title, $postContent, $signature, $currHeaderImg);
+Post::updatePost(
+    post_id: $postId,
+    title: $title,
+    content: $postContent,
+    signature: $signature,
+    border_color: $color,
+    header_image: $currHeaderImg,
+);
 
 header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
 exit();

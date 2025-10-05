@@ -36,7 +36,7 @@ try {
 }
 
 $headerImage = trim($post['header_image']);
-$color = trim($post['border_color']);
+$borderColor = trim($post['border_color']);
 $title = trim($post['title']);
 $signature = trim($post['signature']);
 $content = trim($post['content']);
@@ -49,6 +49,7 @@ $createdOn = strtok($post['created_on'], ' ');
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Filtered Feels: <?= $post['title']?></title>
+        <link rel="icon" type="image/x-icon" href="../assets/fav_logo.svg">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="../styles/base.css">
@@ -64,8 +65,9 @@ $createdOn = strtok($post['created_on'], ' ');
         <input type="hidden" form="edit-post-form" name="user-id" value="<?= htmlspecialchars($userId) ?>">
         <input type="hidden" form="edit-post-form" id="deleted-img-flag" name="deleted-img-flag" value="0">
         <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
-        <div class="card container-lg p-0 pb-2 rounded-0 rounded-bottom-2 text-light"
-            style="border: solid 0.2rem #<?= $color?>; border-top: none; background: rgb(238, 238, 238, 0);" >
+
+        <div id="post-container" class="card container-lg p-0 pb-2 rounded-2 text-light"
+            style="border: solid 0.15rem #<?= $borderColor ?>; background: rgb(238, 238, 238, 0);" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img
@@ -113,8 +115,8 @@ $createdOn = strtok($post['created_on'], ' ');
                     <?php
                     foreach (Colors::cases() as $color) { ?>
                     <label>
-                        <input type="radio" value="<?= colorToHex($color)?>" tabindex="-1" name="color" class="d-none"
-                            <?= colorToHex($color) === 'FFFFFF' && 'checked'?>
+                        <input form="edit-post-form" type="radio" value="<?= colorToHex($color)?>" tabindex="-1" name="color" class="d-none"
+                            <?= colorToHex($color) === $borderColor ? 'checked' : ''?>
                         />
                         <span class="color-circle rounded-circle"
                             style="background: #<?= colorToHex($color)?>;"></span>
@@ -185,7 +187,7 @@ $createdOn = strtok($post['created_on'], ' ');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button form="edit-post-form" type="submit" name="submit" id="delete-post-btn" class="btn btn-outline-success">Save Changes</button>
+                        <button form="edit-post-form" type="submit" name="submit" value="save" class="btn btn-outline-success">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -203,7 +205,7 @@ $createdOn = strtok($post['created_on'], ' ');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button form="edit-post-form" type="submit" name="delete" id="delete-post-btn" class="btn btn-danger">Delete Post</button>
+                        <button form="edit-post-form" type="submit" name="submit" value="delete" class="btn btn-danger">Delete Post</button>
                     </div>
                 </div>
             </div>

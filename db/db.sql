@@ -13,6 +13,7 @@ CREATE TABLE PostTable (
     content TEXT NOT NULL,
     header_image VARCHAR(255) NULL,
     signature VARCHAR(255) DEFAULT 'Someone',
+    border_color CHAR(6) NOT NULL DEFAULT 'FFFFFF',
     created_on DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_on DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted BOOLEAN DEFAULT False,

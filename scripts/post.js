@@ -30,14 +30,13 @@ if (allPosts !== null) {
   });
 }
 
+const postInputs = document.querySelectorAll(".post-input");
 const editPostBtn = document.querySelector("#edit-post-btn");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const postDetails = document.querySelectorAll(".post-detail");
-const postInputs = document.querySelectorAll(".post-input");
 
 const headerImg = document.querySelector("#header-img");
 const editHeaderImg = document.querySelector("#edit-header-img");
-const changeImgBtn = document.querySelector("#change-img-btn");
 const removeImgBtn = document.querySelector("#remove-img-btn");
 const deletedImgFlag = document.querySelector("#deleted-img-flag");
 
@@ -49,6 +48,11 @@ const editContentArea = document.querySelector("#edit-content-area");
 const editTitle = document.querySelector("#edit-title");
 const editSignature = document.querySelector("#edit-signature");
 
+const colorRadios = document.querySelectorAll('input[name="color"]');
+const postContainer = document.querySelector("#post-container");
+const currColor = document.querySelector('input[name="color"]:checked');
+let newColor = "";
+
 if (postInputs !== null) {
   postInputs.forEach((detail) => {
     detail.classList.add("d-none");
@@ -56,7 +60,7 @@ if (postInputs !== null) {
 }
 
 if (editPostBtn !== null) {
-  const savedHeaderImg = headerImg.src;
+  const currHeaderImg = headerImg.src;
 
   editPostBtn.onclick = () => {
     postDetails.forEach((detail) => {
@@ -77,12 +81,16 @@ if (editPostBtn !== null) {
       inputs.classList.add("d-none");
     });
 
-    if (savedHeaderImg !== headerImg.src) {
-      headerImg.src = savedHeaderImg;
+    if (currHeaderImg !== headerImg.src) {
+      headerImg.src = currHeaderImg;
     }
 
     if (headerImg.src === window.location.href) {
       headerImg.src = "#";
+    }
+
+    if (currColor.value !== newColor) {
+      postContainer.style.border = `solid 0.2rem #${currColor.value}`;
     }
 
     deletedImgFlag.value = "0";
@@ -109,4 +117,12 @@ if (editPostBtn !== null) {
     headerImg.src = "";
     deletedImgFlag.value = "1";
   };
+
+  colorRadios.forEach((color) => {
+    color.onchange = () => {
+      if (color.checked) {
+        postContainer.style.border = `solid 0.2rem #${color.value}`;
+      }
+    };
+  });
 }
