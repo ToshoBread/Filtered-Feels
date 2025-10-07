@@ -2,7 +2,7 @@
 
 class Card
 {
-    private $contentMaxLength = 320;
+    private $contentMaxLength = 240;
 
     private $contentMaxLenWithImg = 120;
 
@@ -45,12 +45,13 @@ class Card
                 src="<?= getImage($this->headerImage)?>"
                 class="card-img-top"
                 style="aspect-ratio: 4/2;  object-fit: cover; object-position: center;"
+                loading="lazy"
             />
 
             <?php }?>
 
             <div class="card-body">
-                <h3 class="card-title"><?= $this->title?></h3>
+                <h3 class="card-title fw-bold"><?= $this->title?></h3>
                 <p class="card-text">
                     <?php
                     if ($this->headerImage && mb_strlen($this->content) > $this->contentMaxLenWithImg) {

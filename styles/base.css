@@ -54,6 +54,7 @@ body {
 
 .navbar-nav .hide-btn {
   position: absolute;
+  display: none;
 }
 
 img[src=""] {

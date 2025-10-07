@@ -15,7 +15,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Form Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -33,7 +33,7 @@ try {
 
 } catch (Exception $e) {
     addToErrLog('Empty Field Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -50,7 +50,7 @@ try {
 
 } catch (Exception $e) {
     addToErrLog('User Verification Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -63,5 +63,5 @@ if (isset($_SESSION['prev_page'])) {
     exit();
 }
 
-header('Location: ../pages/index.php');
+header('Location: ../index.php');
 exit();

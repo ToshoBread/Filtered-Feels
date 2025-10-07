@@ -4,7 +4,7 @@ function Navbar()
 
     <nav id="top-nav" class="navbar navbar-expand-md navbar-dark sticky-top shadow">
         <div class="container-lg">
-            <img src="../assets/ff_logo.svg" style="width: 8rem;" class="" />
+            <img src="assets/ff_logo.svg" style="width: 8rem;" class="" />
             <button
                 class="navbar-toggler"
                 data-bs-toggle="offcanvas"
@@ -20,13 +20,13 @@ function Navbar()
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title">Filtered Feels</h5>
                     <button
-                        class="btn-close btn-close"
+                        class="btn-close"
                         data-bs-dismiss="offcanvas"
                         aria-label="Close Nav"
                     ></button>
                 </div>
                 <div class="offcanvas-body justify-content-end fs-5">
-                    <hr />
+                    <hr>
                     <ul class="navbar-nav gap-4">
                         <li id="nav-new-post" class="nav-item">
                             <a href="new_post.php" class="nav-link">Write New Post</a>
@@ -59,11 +59,10 @@ function Navbar()
             </div>
         </div>
     </nav>
-    <script src="../scripts/navbar.js"></script>
+    <script src="scripts/navbar.js"></script>
     <?php }
 if (isset($_POST['logout'])) {
     session_destroy();
-    header('Location: ../pages/index.php');
+    header('Location: index.php');
     exit();
 } ?>
-

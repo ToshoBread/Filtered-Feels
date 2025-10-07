@@ -1,9 +1,6 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
-$dotenv->load();
+require_once 'config.php';
 
 abstract class Db
 {
@@ -21,11 +18,11 @@ abstract class Db
 
     private static function init()
     {
-        self::$host = $_ENV['DB_HOSTNAME'];
-        self::$port = $_ENV['PORT'];
-        self::$db_name = $_ENV['DB_NAME'];
-        self::$username = $_ENV['DB_USERNAME'];
-        self::$password = $_ENV['DB_PASSWORD'];
+        self::$host = Config::$DB_HOSTNAME;
+        self::$port = Config::$DB_PORT;
+        self::$db_name = Config::$DB_NAME;
+        self::$username = Config::$DB_USERNAME;
+        self::$password = Config::$DB_PASSWORD;
         self::$dsn = 'mysql:host='.self::$host.';port='.self::$port.';dbname='.self::$db_name.';charset=utf8mb4';
     }
 

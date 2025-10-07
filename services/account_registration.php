@@ -13,7 +13,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Form Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -35,7 +35,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Empty Field Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -49,7 +49,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Password Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
@@ -61,11 +61,11 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Account Creation Error', $e->getMessage());
-    header('Location: ../pages/account.php');
+    header('Location: ../account.php');
     exit();
 }
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 User::addUser($username, $hashedPassword);
-header('Location: ../pages/account.php');
+header('Location: ../account.php');
 exit();

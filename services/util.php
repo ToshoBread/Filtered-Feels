@@ -42,7 +42,7 @@ function addToErrLog(string $headerMessage, string $errMessage)
 
 function getImage(string $filename)
 {
-    $targetFile = '../db/uploads/'.$filename;
+    $targetFile = 'db/uploads/'.$filename;
     try {
         if (! file_exists($targetFile)) {
             throw new Exception('Image does not exist in local system.');
@@ -51,7 +51,7 @@ function getImage(string $filename)
         return $targetFile;
     } catch (Exception $e) {
         addToErrLog('Local Error', $e->getMessage());
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
         exit();
     }
 }

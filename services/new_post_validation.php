@@ -15,7 +15,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Form Error', $e->getMessage());
-    header('Location: ../pages/new_post.php');
+    header('Location: ../new_post.php');
     exit();
 }
 
@@ -38,7 +38,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Post Content Upload Error', $e->getMessage());
-    header('Location: ../pages/new_post.php');
+    header('Location: ../new_post.php');
     exit();
 }
 
@@ -84,13 +84,13 @@ try {
             );
         }
 
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
         exit();
 
     }
 } catch (Exception $e) {
     addToErrLog('File Upload Error', $e->getMessage());
-    header('Location: ../pages/new_post.php');
+    header('Location: ../new_post.php');
     exit();
 }
 
@@ -111,5 +111,5 @@ if (isset($userId)) {
     );
 }
 
-header('Location: ../pages/index.php');
+header('Location: ../index.php');
 exit();

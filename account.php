@@ -5,7 +5,7 @@ if (! empty($_SESSION['user_id']) || ! empty($_SESSION['username'])) {
     header('Location: index.php');
 }
 
-require_once '../components/navbar.php';
+require_once 'components/navbar.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,9 +13,9 @@ require_once '../components/navbar.php';
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Filtered Feels: User Account</title>
-        <link rel="icon" type="image/x-icon" href="../assets/fav_logo.svg">
+        <link rel="icon" type="image/x-icon" href="assets/fav_logo.svg">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="../styles/base.css">
+        <link rel="stylesheet" href="styles/base.css">
     </head>
     <body>
         <?= Navbar()?>
@@ -23,7 +23,7 @@ require_once '../components/navbar.php';
             class="d-flex justify-content-center h-75"
         >
             <form
-                action="../services/account_validation.php"
+                action="services/account_validation.php"
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="login-form"
@@ -72,7 +72,7 @@ require_once '../components/navbar.php';
 
             <!--Registration Form-->
             <form
-                action="../services/account_registration.php"
+                action="services/account_registration.php"
                 method="post"
                 enctype="application/x-www-form-urlencoded"
                 id="register-form"
@@ -136,6 +136,6 @@ require_once '../components/navbar.php';
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-        <script src="../scripts/account.js"></script>
+        <script src="scripts/account.js"></script>
     </body>
 </html>

@@ -24,12 +24,12 @@ try {
             exit();
         }
 
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
         exit();
     }
 } catch (Exception $e) {
     addToErrLog('Form Error', $e->getMessage());
-    header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+    header('Location: ../post.php?user='.$userId.'&post='.$postId);
     exit();
 }
 
@@ -62,7 +62,7 @@ try {
     }
 } catch (Exception $e) {
     addToErrLog('Post Content Upload Error', $e->getMessage());
-    header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+    header('Location: ../post.php?user='.$userId.'&post='.$postId);
     exit();
 }
 
@@ -98,7 +98,7 @@ try {
             file_exists($uploadDest.$currHeaderImg) && unlink($uploadDest.$currHeaderImg);
         }
 
-        header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+        header('Location: ../post.php?user='.$userId.'&post='.$postId);
         exit();
     }
 
@@ -112,13 +112,13 @@ try {
         );
 
         file_exists($uploadDest.$currHeaderImg) && unlink($uploadDest.$currHeaderImg);
-        header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+        header('Location: ../post.php?user='.$userId.'&post='.$postId);
         exit();
     }
 
 } catch (Exception $e) {
     addToErrLog('Image handling Error', $e->getMessage());
-    header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+    header('Location: ../post.php?user='.$userId.'&post='.$postId);
     exit();
 }
 
@@ -131,5 +131,5 @@ Post::updatePost(
     header_image: $currHeaderImg,
 );
 
-header('Location: ../pages/post.php?user='.$userId.'&post='.$postId);
+header('Location: ../post.php?user='.$userId.'&post='.$postId);
 exit();
