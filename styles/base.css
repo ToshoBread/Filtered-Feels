@@ -57,6 +57,23 @@ body {
   display: none;
 }
 
+.page-link {
+  background: transparent;
+  color: #b9aebc;
+  border: none;
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    color: white;
+  }
+}
+
+.page-link .active {
+  background: transparent !important;
+}
+
 img[src=""] {
   display: none;
 }
@@ -87,6 +104,11 @@ textarea::placeholder,
 textarea::-webkit-input-placeholder {
   color: white !important;
   background: transparent !important;
+
+  &:focus {
+    color: white !important;
+    background: transparent !important;
+  }
 }
 
 input[type="file"]::file-selector-button {

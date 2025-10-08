@@ -8,7 +8,28 @@ require_once 'components/navbar.php';
 require_once 'components/card.php';
 
 $posts = Post::selectAllPosts();
+$postCount = count($posts);
 
+$cardsPerPage = 10;
+$pages = ceil($postCount / $cardsPerPage);
+$currPage = $_GET['page'] ?? 1;
+
+$lowerLimit = $postCount - ($cardsPerPage * $currPage);
+$upperLimit = $lowerLimit + $cardsPerPage;
+
+function prevPage(int $currPage)
+{
+    $currPage--;
+
+    return $currPage <= 1 ? 1 : $currPage;
+}
+
+function nextPage(int $currPage, int $pages)
+{
+    $currPage++;
+
+    return $currPage >= $pages ? $pages : $currPage;
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,22 +48,57 @@ $posts = Post::selectAllPosts();
             <a href="new_post.php" id="new-post" class="btn btn-outline-light fs-4">Write New Post</a>
         </div>
 
-        <div
-            class="container-fluid d-flex justify-content-center flex-wrap gap-5"
-        >
-            <?php for ($i = count($posts) - 1; $i >= 0; $i--) {
-                $current = $posts[$i];
-                (new Card(
-                    $current['post_id'],
-                    $current['title'],
-                    $current['content'],
-                    $current['signature'],
-                    $current['border_color'],
-                    $current['user_id'],
-                    $current['header_image']
-                ))->render();
+        <nav aria-label="Top Pagination">
+            <ul class="pagination pagination-lg justify-content-center gap-3 flex-wrap my-5">
+                <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
+
+                <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"
+                    class="page-link"><span>&laquo;</span></a></li>
+
+                <li class="page-item"><p class="page-link text-light"><?= $currPage?></p></li>
+
+                <li class="page-item"><a href="?page=<?= nextPage($currPage, $pages)?>"
+                    class="page-link"><span>&raquo;</span></a></li>
+
+                <li class="page-item"><a href="?page=<?= $pages?>" class="page-link">Last Page</a></li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid d-flex justify-content-center flex-wrap gap-5">
+            <?php if (! empty($posts)) {
+                for ($i = $upperLimit - 1; $i >= $lowerLimit; $i--) {
+                    $current = $posts[$i];
+                    if (! empty($current)) {
+                        (new Card(
+                            $current['post_id'],
+                            $current['title'],
+                            $current['content'],
+                            $current['signature'],
+                            $current['border_color'],
+                            $current['user_id'],
+                            $current['header_image']
+                        ))->render();
+                    }
+                }
             }?>
         </div>
+
+        <nav aria-label="Bottom Pagination">
+            <ul class="pagination pagination-lg justify-content-center gap-3 flex-wrap my-5">
+                <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
+
+                <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"
+                    class="page-link"><span>&laquo;</span></a></li>
+
+                <li class="page-item"><p class="page-link"><?= $currPage?></p></li>
+
+                <li class="page-item"><a href="?page=<?= nextPage($currPage, $pages)?>"
+                    class="page-link"><span>&raquo;</span></a></li>
+
+                <li class="page-item"><a href="?page=<?= $pages?>" class="page-link">Last Page</a></li>
+            </ul>
+        </nav>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <script src="scripts/index.js"></script>
         <script src="scripts/card.js"></script>
