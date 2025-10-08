@@ -60,7 +60,7 @@ function nextPage(int $currPage, int $pages)
         </div>
 
         <nav aria-label="Top Pagination">
-            <ul class="pagination pagination-lg justify-content-center gap-3 flex-wrap my-5">
+            <ul class="pagination justify-content-center gap-3 flex-wrap my-5">
                 <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
 
                 <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"
@@ -78,24 +78,30 @@ function nextPage(int $currPage, int $pages)
         <div class="container-fluid d-flex justify-content-center flex-wrap gap-5">
             <?php if (! empty($posts)) {
                 for ($i = $upperLimit - 1; $i >= $lowerLimit; $i--) {
-                    $current = $posts[$i];
-                    if (! empty($current)) {
-                        (new Card(
-                            $current['post_id'],
-                            $current['title'],
-                            $current['content'],
-                            $current['signature'],
-                            $current['border_color'],
-                            $current['user_id'],
-                            $current['header_image']
-                        ))->render();
+                    if ($i < 0) {
+                        break;
                     }
+
+                    $current = $posts[$i];
+                    if (empty($current)) {
+                        break;
+                    }
+
+                    (new Card(
+                        $current['post_id'],
+                        $current['title'],
+                        $current['content'],
+                        $current['signature'],
+                        $current['border_color'],
+                        $current['user_id'],
+                        $current['header_image']
+                    ))->render();
                 }
             }?>
         </div>
             
         <nav aria-label="Bottom Pagination">
-            <ul class="pagination pagination-lg justify-content-center gap-3 flex-wrap my-5">
+            <ul class="pagination justify-content-center gap-3 flex-wrap my-5">
                 <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
 
                 <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"

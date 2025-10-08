@@ -58,20 +58,19 @@ body {
 }
 
 .page-link {
-  background: transparent;
+  background: transparent !important;
   color: #b9aebc;
-  border: none;
-  user-select: none;
+  border: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 
   &:hover,
   &:focus {
-    background: transparent;
-    color: white;
+    background: transparent !important;
+    color: white !important;
   }
-}
-
-.page-link .active {
-  background: transparent !important;
 }
 
 img[src=""] {
