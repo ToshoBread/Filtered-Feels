@@ -16,19 +16,17 @@ function nextPage(int $currPage, int $pages)
 function Pagination(int $currPage, int $pages)
 {?>
 
-<nav aria-label="Top Pagination">
-    <ul class="pagination justify-content-center gap-5 flex-wrap my-5">
-        <li class="page-item"><a href="?page=1">First Page</a></li>
+<nav aria-label="Pagination">
+    <ul class="pager container-fluid d-flex justify-content-center my-5">
+        <a class="p-3 mx-3 text-light fw-bold" href="?page=1">First</a>
 
-        <li class="page-item"><a href="?page=<?= prevPage($currPage)?>">
-            <span>&laquo;</span></a></li>
+        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= prevPage($currPage)?>"><span>&laquo;</span></a>
 
-        <li class="page-item"><p class="text-light"><?= $currPage?></p></li>
+        <p class="p-3 mx-3 text-light fw-bold"><?= $currPage?></p>
 
-        <li class="page-item"><a href="?page=<?= nextPage($currPage, $pages)?>"> 
-            <span>&raquo;</span></a></li>
+        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= nextPage($currPage, $pages)?>"><span>&raquo;</span></a>
 
-        <li class="page-item"><a href="?page=<?= $pages?>"  >Last Page</a></li>
+        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= $pages?>">Last</a>
     </ul>
 </nav>
 <?php }?>

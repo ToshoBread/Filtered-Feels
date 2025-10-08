@@ -57,29 +57,27 @@ body {
   display: none;
 }
 
-.page-item {
+.pager {
   p {
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   a {
-    background: transparent !important;
     color: #b9aebc !important;
-    border: none !important;
     text-decoration: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: none;
+    user-select: none;
 
-    transition: color 0.2s !important;
+    transition: color 0.2s;
 
     &:hover,
     &:focus {
-      background: transparent !important;
       color: white !important;
     }
   }
