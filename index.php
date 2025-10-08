@@ -6,6 +6,7 @@ require_once 'db/Post.php';
 require_once 'services/util.php';
 require_once 'components/navbar.php';
 require_once 'components/card.php';
+require_once 'components/pagination.php';
 
 $posts = Post::selectAllPosts();
 $postCount = count($posts);
@@ -17,19 +18,6 @@ $currPage = $_GET['page'] ?? 1;
 $lowerLimit = $postCount - ($cardsPerPage * $currPage);
 $upperLimit = $lowerLimit + $cardsPerPage;
 
-function prevPage(int $currPage)
-{
-    $currPage--;
-
-    return $currPage <= 1 ? 1 : $currPage;
-}
-
-function nextPage(int $currPage, int $pages)
-{
-    $currPage++;
-
-    return $currPage >= $pages ? $pages : $currPage;
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -48,21 +36,7 @@ function nextPage(int $currPage, int $pages)
             <a href="new_post.php" id="new-post" class="btn btn-outline-light fs-4">Write New Post</a>
         </div>
 
-        <nav aria-label="Top Pagination">
-            <ul class="pagination justify-content-center gap-3 flex-wrap my-5">
-                <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
-
-                <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"
-                    class="page-link"><span>&laquo;</span></a></li>
-
-                <li class="page-item"><p class="page-link text-light"><?= $currPage?></p></li>
-
-                <li class="page-item"><a href="?page=<?= nextPage($currPage, $pages)?>"
-                    class="page-link"><span>&raquo;</span></a></li>
-
-                <li class="page-item"><a href="?page=<?= $pages?>" class="page-link">Last Page</a></li>
-            </ul>
-        </nav>
+        <?= Pagination($currPage, $pages)?>
 
         <div class="container-fluid d-flex justify-content-center flex-wrap gap-5">
             <?php if (! empty($posts)) {
@@ -89,21 +63,7 @@ function nextPage(int $currPage, int $pages)
             }?>
         </div>
 
-        <nav aria-label="Bottom Pagination">
-            <ul class="pagination justify-content-center gap-3 flex-wrap my-5">
-                <li class="page-item"><a href="?page=1" class="page-link">First Page</a></li>
-
-                <li class="page-item"><a href="?page=<?= prevPage($currPage)?>"
-                    class="page-link"><span>&laquo;</span></a></li>
-
-                <li class="page-item"><p class="page-link"><?= $currPage?></p></li>
-
-                <li class="page-item"><a href="?page=<?= nextPage($currPage, $pages)?>"
-                    class="page-link"><span>&raquo;</span></a></li>
-
-                <li class="page-item"><a href="?page=<?= $pages?>" class="page-link">Last Page</a></li>
-            </ul>
-        </nav>
+        <?= Pagination($currPage, $pages)?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <script src="scripts/index.js"></script>
