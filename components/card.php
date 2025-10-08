@@ -2,10 +2,6 @@
 
 class Card
 {
-    private $contentMaxLength = 240;
-
-    private $contentMaxLenWithImg = 120;
-
     private int $postId;
 
     private ?int $userId;
@@ -50,19 +46,9 @@ class Card
 
             <?php }?>
 
-            <div class="card-body">
+            <div class="card-body" style="overflow-y: hidden; margin-bottom: 1rem !important;">
                 <h3 class="card-title fw-bold"><?= $this->title?></h3>
-                <p class="card-text">
-                    <?php
-                    if ($this->headerImage && mb_strlen($this->content) > $this->contentMaxLenWithImg) {
-                        echo substr($this->content, 0, $this->contentMaxLenWithImg).'...';
-                    } elseif (mb_strlen($this->content) > $this->contentMaxLength) {
-                        echo substr($this->content, 0, $this->contentMaxLength).'...';
-                    } else {
-                        echo $this->content;
-                    }
-        ?>
-                </p>
+                <p class="card-text"><?= $this->content; ?></p>
             </div>
             <div class="card-footer blockquote-footer text-end"><?= $this->signature?></div>
         </div>
