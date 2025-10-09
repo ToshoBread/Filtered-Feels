@@ -17,16 +17,27 @@ function Pagination(int $currPage, int $pages)
 {?>
 
 <nav aria-label="Pagination">
-    <ul class="pager container-fluid d-flex justify-content-center my-5">
-        <a class="p-3 mx-3 text-light fw-bold" href="?page=1">First</a>
+    <ul class="pager container-fluid d-flex justify-content-center my-5 fs-5">
+        <?php if ($currPage > 2) { ?>
+        <a class="p-3 text-light fw-bold" href="?page=1">1</a>
+        <?php } ?>
 
-        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= prevPage($currPage)?>"><span>&laquo;</span></a>
+        <?php if ($currPage > 1) {?>
+        <a class="p-3 text-light fw-bold" href="?page=<?= prevPage($currPage)?>"><span>&laquo;</span></a>
+        <a href="?page=<?= prevPage($currPage) ?>" class="p-3 text-light fw-bold"><?= $currPage - 1?></a>
+        <?php } ?>
 
-        <p class="p-3 mx-3 text-light fw-bold"><?= $currPage?></p>
+        <p class="p-3 text-light fw-bold"><?= $currPage?></p>
 
-        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= nextPage($currPage, $pages)?>"><span>&raquo;</span></a>
+        <?php if ($currPage < $pages) {?>
+        <a href="?page=<?= nextPage($currPage, $pages) ?>" class="p-3 text-light fw-bold"><?= $currPage + 1?></a>
+        <a class="p-3 text-light fw-bold" href="?page=<?= nextPage($currPage, $pages)?>"><span>&raquo;</span></a>
+        <?php } ?>
 
-        <a class="p-3 mx-3 text-light fw-bold" href="?page=<?= $pages?>">Last</a>
+        <?php if ($currPage < $pages - 1) { ?>
+        <a class="p-3 text-light fw-bold" href="?page=<?= $pages?>"><?= $pages?></a>
+        <?php } ?>
+
     </ul>
 </nav>
 <?php }?>
