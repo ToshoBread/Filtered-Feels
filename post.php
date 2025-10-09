@@ -6,6 +6,7 @@ require_once 'db/Post.php';
 require_once 'db/User.php';
 require_once 'services/util.php';
 require_once 'components/navbar.php';
+require_once 'components/footer.php';
 
 $postId = (int) $_GET['post'];
 $userId = (int) $_GET['user'];
@@ -210,6 +211,8 @@ $createdOn = strtok($post['created_on'], ' ');
                 </div>
             </div>
         </div>
+
+        <?= Footer()?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <script src="scripts/post.js"></script>
     </body>

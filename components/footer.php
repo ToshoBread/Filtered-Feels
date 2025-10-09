@@ -2,9 +2,7 @@
 
 function Footer()
 {?>
-<nav class="navbar bg-dark text-bg-dark">
-    <div class="container justify-content-center">
-        <p>&copy; <?= date('Y')?> ToshoBread. All Rights Reserved.</p>
-    </div>
-</nav>
+<div class="container-fluid text-light mt-5">
+        <p class="text-center">&copy; <?= date('Y')?> ToshoBread. All Rights Reserved.</p>
+</div>
     <?php }?>

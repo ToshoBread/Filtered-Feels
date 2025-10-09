@@ -11,6 +11,7 @@ require_once 'services/util.php';
 require_once 'components/navbar.php';
 require_once 'components/card.php';
 require_once 'components/pagination.php';
+require_once 'components/footer.php';
 
 $posts = Post::selectPostByUserId($_SESSION['user_id']);
 $username = $_SESSION['username'];
@@ -76,6 +77,7 @@ $upperLimit = $lowerLimit + $cardsPerPage;
         </div>
             
         <?= Pagination($currPage, $pages)?>
+        <?= Footer()?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <script src="scripts/card.js"></script>

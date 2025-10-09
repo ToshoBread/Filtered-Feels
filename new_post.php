@@ -8,7 +8,7 @@ if (! empty($_SESSION['username'])) {
 
 require_once 'components/navbar.php';
 require_once 'services/util.php';
-
+require_once 'components/footer.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -108,6 +108,7 @@ require_once 'services/util.php';
             ></textarea>
             <input type="submit" value="Post" id="submit-btn" name="submit" class="btn btn-outline-success px-5 fs-5 col col-12" aria-label="Submit" />
         </form>
+        <?= Footer()?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <script src="scripts/new_post.js"></script>
     </body>
