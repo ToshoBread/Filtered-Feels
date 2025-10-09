@@ -23,7 +23,7 @@ function Pagination(int $currPage, int $pages)
         <?php } ?>
 
         <?php if ($currPage > 1) {?>
-        <a class="p-3 text-light fw-bold" href="?page=<?= prevPage($currPage)?>"><span>&laquo;</span></a>
+        <a class="p-3 text-light fw-bold" href="?page=<?= prevPage($currPage)?>"><i class="bi bi-caret-left-fill"></i></a>
         <a href="?page=<?= prevPage($currPage) ?>" class="p-3 text-light fw-bold"><?= $currPage - 1?></a>
         <?php } ?>
 
@@ -31,7 +31,7 @@ function Pagination(int $currPage, int $pages)
 
         <?php if ($currPage < $pages) {?>
         <a href="?page=<?= nextPage($currPage, $pages) ?>" class="p-3 text-light fw-bold"><?= $currPage + 1?></a>
-        <a class="p-3 text-light fw-bold" href="?page=<?= nextPage($currPage, $pages)?>"><span>&raquo;</span></a>
+        <a class="p-3 text-light fw-bold" href="?page=<?= nextPage($currPage, $pages)?>"><i class="bi bi-caret-right-fill"></i></a>
         <?php } ?>
 
         <?php if ($currPage < $pages - 1) { ?>
