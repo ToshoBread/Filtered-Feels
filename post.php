@@ -68,7 +68,7 @@ $createdOn = strtok($post['created_on'], ' ');
         <input type="hidden" form="edit-post-form" name="curr-header-img" value="<?= $headerImage ? htmlspecialchars($headerImage) : null?>">
 
         <div id="post-container" class="card container-lg p-0 pb-2 rounded-2 text-light"
-            style="border: solid 0.15rem #<?= $borderColor ?>; background: rgb(238, 238, 238, 0);" >
+            style="border: solid 0.15rem #<?= $borderColor ?>; background: #<?= $borderColor?>10;" >
 
             <div id="header-img-wrapper" class="input-group overflow-hidden w-100">
                 <img

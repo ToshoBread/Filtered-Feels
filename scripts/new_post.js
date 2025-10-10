@@ -26,10 +26,12 @@ removeImgBtn.onclick = () => {
 };
 
 newPostForm.style.border = "solid 0.15rem white";
+newPostForm.style.backgroundColor = "#FFFFFF10";
 colorRadios.forEach((color) => {
   color.onchange = () => {
     if (color.checked) {
       newPostForm.style.border = `solid 0.15rem #${color.value}`;
+      newPostForm.style.backgroundColor = `#${color.value}10`;
     }
   };
 });

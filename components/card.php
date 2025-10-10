@@ -12,17 +12,17 @@ class Card
 
     private string $signature;
 
-    private string $borderColor;
+    private string $color;
 
     private ?string $headerImage;
 
-    public function __construct(int $postId, string $title, string $content, ?string $signature = 'Someone', ?string $borderColor = 'FFFFFF', ?int $userId = 0, ?string $headerImage = null)
+    public function __construct(int $postId, string $title, string $content, ?string $signature = 'Someone', ?string $color = 'FFFFFF', ?int $userId = 0, ?string $headerImage = null)
     {
         $this->postId = $postId;
         $this->title = $title;
         $this->content = $content;
         $this->signature = $signature;
-        $this->borderColor = $borderColor;
+        $this->color = $color;
         $this->userId = $userId;
         $this->headerImage = $headerImage;
     }
@@ -31,7 +31,8 @@ class Card
     {
         ?>
         <div class="post card text-light shadow"
-            style="border: solid 0.15rem #<?= $this->borderColor ?>;"
+            style=" border: solid 0.15rem #<?= $this->color ?>;
+            background: #<?= $this->color ?>10;"
             data-post-id="<?= $this->postId ?>"
             data-user-id="<?= $this->userId ?? 0 ?>">
 

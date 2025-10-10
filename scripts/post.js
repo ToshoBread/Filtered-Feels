@@ -89,7 +89,8 @@ if (editPostBtn !== null) {
   colorRadios.forEach((color) => {
     color.onchange = () => {
       if (color.checked) {
-        postContainer.style.border = `solid 0.2rem #${color.value}`;
+        postContainer.style.border = `solid 0.15rem #${color.value}`;
+        postContainer.style.backgroundColor = `#${color.value}10`;
       }
     };
   });

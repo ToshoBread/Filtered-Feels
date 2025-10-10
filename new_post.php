@@ -50,13 +50,12 @@ require_once 'components/footer.php';
                     id="signature"
                     name="signature"
                     placeholder="Someone"
-                    value=<?= isset($username) ? $username : 'Someone'?>
+                    value=<?= $username ?? 'Someone'?>
                     aria-required="false"
                     aria-label="Input Signature"
                 />
                 <label for="signature">Signature</label>
             </div>
-            <h6 class="text-center text-light" style="user-select: none;">Border Color:</h6>
             <div class="d-flex gap-3 flex-wrap justify-content-center mb-3">
                 <?php
                 foreach (Colors::cases() as $color) { ?>

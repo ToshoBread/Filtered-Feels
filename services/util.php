@@ -18,6 +18,8 @@ enum Colors
 function colorToHex(Colors $color)
 {
     return match ($color) {
+        Colors::White => 'FFFFFF',
+        Colors::Black => '202020',
         Colors::Red => 'FF0000',
         Colors::Blue => '0000FF',
         Colors::Yellow => 'FFFF00',
@@ -27,8 +29,6 @@ function colorToHex(Colors $color)
         Colors::Indigo => '5F0087',
         Colors::Pink => 'FFAFD7',
         Colors::Teal => '008787',
-        Colors::Black => '000000',
-        Colors::White => 'FFFFFF',
         default => 'FFFFFF'
     };
 }
